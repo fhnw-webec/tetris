@@ -5,7 +5,7 @@ const isActiveTetromino = (model, row, cell) => (0 < model[row][cell] && model[r
 
 const hasCollision = model => !hasSpaceAround(model)
 
-function hasSpaceAround(model) {
+const hasSpaceAround = model => {
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if (isActiveTetromino(model, row, cell)) {
@@ -18,7 +18,7 @@ function hasSpaceAround(model) {
     return true;
 }
 
-function move(model) {
+const move = model => {
     let copy = structuredClone(model);
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {

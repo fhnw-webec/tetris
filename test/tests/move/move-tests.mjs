@@ -2,7 +2,7 @@ import { test, assert } from "../../lib/unit-test.mjs"
 import { move, equals } from "/src/modules/logic.mjs";
 
 function singleBlockMovesTests() {
-    const CAT = 'Single block moves, empty model';
+    const CAT = 'Move: Single block moves, empty model';
 
     test('Single block in 3x3 Matrix, with one move', () => {
         // given
@@ -73,7 +73,7 @@ function singleBlockMovesTests() {
 }
 
 function twoHorizontalBlockMoveTests() {
-    const CAT = 'Two horizontal block moves, empty model';
+    const CAT = 'Move: Two horizontal block moves, empty model';
 
     test('Two blocks in 4x4 Matrix, with one move', () => {
         // given
@@ -151,7 +151,7 @@ function twoHorizontalBlockMoveTests() {
 
 
 function OMoveTests() {
-    const CAT = 'O move test, empty model';
+    const CAT = 'Move: O move test, empty model';
 
     test('O, with one move', () => {
         // given
@@ -228,7 +228,7 @@ function OMoveTests() {
 }
 
 function TMoveTests() {
-    const CAT = 'T move test, empty model';
+    const CAT = 'Move: T move test, empty model';
 
     test('T, with one move', () => {
         // given
@@ -305,7 +305,7 @@ function TMoveTests() {
 }
 
 function ZMoveTests() {
-    const CAT = 'Z move test, empty model';
+    const CAT = 'Move: Z move test, empty model';
 
     test('Z, with one move', () => {
         // given
@@ -382,7 +382,7 @@ function ZMoveTests() {
 }
 
 function ZMoveTestsNotEmpty() {
-    const CAT = 'Z move test, non empty model';
+    const CAT = 'Move: Z move test, non empty model';
 
     test('Z, with ten moves', () => {
         // given
@@ -467,4 +467,67 @@ function ZMoveTestsNotEmpty() {
 
 }
 
-export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, TMoveTests, ZMoveTests, ZMoveTestsNotEmpty };
+function ZTIMovesNonEmpty() {
+    const CAT = 'Move: Z, T, I moves on a non empty model'; // T:1, Z:2, I:3
+
+    test('Z, with 15 moves', () => {
+        // given
+        let m1 = [
+            [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [11,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [11, 11,  0,  0,  0,  0,  0,  0,  0,  0],
+            [11, 11, 12, 12,  0,  0,  0,  0,  0,  0],
+            [11, 11, 11, 12, 12,  0,  0,  0,  0,  0],
+        ];
+        let m2 = [
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0, 13,  0,  0,  0,  0,  0],
+            [11,  0,  0,  0, 13,  0,  0,  0,  0,  0],
+            [11, 11,  0,  0, 13,  0,  0,  0,  0,  0],
+            [11, 11, 12, 12, 13,  0,  0,  0,  0,  0],
+            [11, 11, 11, 12, 12,  0,  0,  0,  0,  0],
+        ];
+
+        // when
+        let result = move(m1);
+        for (let index = 1; index < 15; index++) {
+            result = move(result);
+        }
+
+        // then
+        assert(equals(result, m2), "Baseline of I should be in row 18");
+
+    }, CAT)
+}
+
+export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, TMoveTests, ZMoveTests, 
+         ZMoveTestsNotEmpty, ZTIMovesNonEmpty };
