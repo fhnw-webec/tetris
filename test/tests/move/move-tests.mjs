@@ -33,9 +33,9 @@ function singleBlockMovesTests() {
             [0, 0, 0]
         ];
         const m2 = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [1, 0, 0]
+            [ 0, 0, 0],
+            [ 0, 0, 0],
+            [11, 0, 0]
         ];
 
         // when
@@ -52,12 +52,12 @@ function singleBlockMovesTests() {
         const m1 = [
             [1, 0, 0],
             [0, 0, 0],
-            [0, 0, 0]
+            [0, 0, 0],
         ];
         const m2 = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [1, 0, 0]
+            [ 0, 0, 0],
+            [ 0, 0, 0],
+            [11, 0, 0],
         ];
 
         // when
@@ -98,7 +98,7 @@ function twoHorizontalBlockMoveTests() {
 
     }, CAT)
 
-    test('Two blocks in 4x4 Matrix, with two moves', () => {
+    test('Three blocks in 4x4 Matrix, with two moves', () => {
         // given
         let m1 = [
             [1, 1, 1, 0],
@@ -122,19 +122,19 @@ function twoHorizontalBlockMoveTests() {
 
     }, CAT)
 
-    test('Two blocks in 4x4 Matrix, with ten moves', () => {
+    test('Three blocks in 4x4 Matrix, with ten moves', () => {
         // given
         let m1 = [
-            [1, 1, 1, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 1,  1,  1,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [1, 1, 1, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [11, 11, 11,  0],
         ];
 
         // when
@@ -179,16 +179,16 @@ function OMoveTests() {
     test('O, with two moves', () => {
         // given
         let m1 = [
-            [1, 1, 0, 0],
-            [1, 1, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 1,  1,  0,  0],
+            [ 1,  1,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [1, 1, 0, 0],
-            [1, 1, 0, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [11, 11,  0,  0],
+            [11, 11,  0,  0],
         ];
 
         // when
@@ -203,16 +203,16 @@ function OMoveTests() {
     test('O, with ten moves', () => {
         // given
         let m1 = [
-            [1, 1, 0, 0],
-            [1, 1, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 1,  1,  0,  0],
+            [ 1,  1,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [1, 1, 0, 0],
-            [1, 1, 0, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [11, 11,  0,  0],
+            [11, 11,  0,  0],
         ];
 
         // when
@@ -256,16 +256,16 @@ function TMoveTests() {
     test('T, with two moves', () => {
         // given
         let m1 = [
-            [0, 1, 1, 1],
-            [0, 0, 1, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 0,  1,  1,  1],
+            [ 0,  0,  1,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 1, 1, 1],
-            [0, 0, 1, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0, 11, 11, 11],
+            [ 0,  0, 11,  0],
         ];
 
         // when
@@ -280,16 +280,16 @@ function TMoveTests() {
     test('T, with ten moves', () => {
         // given
         let m1 = [
-            [0, 1, 1, 1],
-            [0, 0, 1, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 0,  1,  1,  1],
+            [ 0,  0,  1,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 1, 1, 1],
-            [0, 0, 1, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0, 11, 11, 11],
+            [ 0,  0, 11,  0],
         ];
 
         // when
@@ -333,16 +333,16 @@ function ZMoveTests() {
     test('Z, with two moves', () => {
         // given
         let m1 = [
-            [2, 2, 0, 0],
-            [0, 2, 2, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 2,  2,  0,  0],
+            [ 0,  2,  2,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [2, 2, 0, 0],
-            [0, 2, 2, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [12, 12,  0,  0],
+            [ 0, 12, 12,  0],
         ];
 
         // when
@@ -357,16 +357,16 @@ function ZMoveTests() {
     test('Z, with ten moves', () => {
         // given
         let m1 = [
-            [2, 2, 0, 0],
-            [0, 2, 2, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
+            [ 2,  2,  0,  0],
+            [ 0,  2,  2,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
         ];
         let m2 = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [2, 2, 0, 0],
-            [0, 2, 2, 0],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [12, 12,  0,  0],
+            [ 0, 12, 12,  0],
         ];
 
         // when
@@ -382,7 +382,7 @@ function ZMoveTests() {
 }
 
 function ZMoveTestsNotEmpty() {
-    const CAT = 'Z move test, not empty model';
+    const CAT = 'Z move test, non empty model';
 
     test('Z, with ten moves', () => {
         // given
@@ -395,8 +395,8 @@ function ZMoveTestsNotEmpty() {
         ];
         let m2 = [
             [ 0,  0,  0,  0,  0],
-            [ 2,  2,  0,  0,  0],
-            [ 0,  2,  2,  0,  0],
+            [12, 12,  0,  0,  0],
+            [ 0, 12, 12,  0,  0],
             [11, 11, 11,  0,  0],
             [ 0, 11,  0,  0,  0],
         ];
@@ -407,10 +407,61 @@ function ZMoveTestsNotEmpty() {
             result = move(result);
         }
 
-        console.log(result);
-
         // then
         assert(equals(result, m2), "Baseline of Z should be in row 1");
+
+    }, CAT)
+
+    test('Z, with two moves, collides with T', () => {
+        // given
+        let m1 = [
+            [ 0,  0,  2,  2,  0],
+            [ 0,  0,  0,  2,  2],
+            [ 0,  0,  0,  0,  0],
+            [11, 11, 11,  0,  0],
+            [ 0, 11,  0,  0,  0],
+        ];
+        let m2 = [
+            [ 0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0],
+            [ 0,  0, 12, 12,  0],
+            [11, 11, 11, 12, 12],
+            [ 0, 11,  0,  0,  0],
+        ];
+
+        // when
+        let result = move(m1);
+        result = move(result);
+
+        // then
+        assert(equals(result, m2), "Baseline of Z should be in row 2");
+
+    }, CAT)
+
+    test('T, with three moves, collides with Z', () => {
+        // given
+        let m1 = [
+            [ 0,  0,  2,  2,  0],
+            [ 0,  0,  0,  2,  2],
+            [ 0,  0,  0,  0,  0],
+            [ 0, 11,  0,  0,  0],
+            [11, 11, 11,  0,  0],
+        ];
+        let m2 = [
+            [ 0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0],
+            [ 0, 11, 12, 12,  0],
+            [11, 11, 11, 12, 12],
+        ];
+
+        // when
+        let result = move(m1);
+        result = move(result);
+        result = move(result);
+
+        // then
+        assert(equals(result, m2), "Baseline of Z should be in row 3");
 
     }, CAT)
 

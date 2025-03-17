@@ -71,7 +71,7 @@ function equalityTest() {
 
     }, EQUALITY);
 
-    test('diffrent values', () => {
+    test('different values', () => {
         // given
         const m1 = [
             [0, 1, 0],
@@ -89,7 +89,7 @@ function equalityTest() {
         const isSame = equals(m1, m2);
 
         // then
-        assert(!isSame, "diffrent values, must be false");
+        assert(!isSame, "different values, must be false");
 
     }, EQUALITY);
 
