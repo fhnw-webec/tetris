@@ -2,7 +2,7 @@ import { test, assert } from "../../lib/unit-test.mjs"
 import { equals } from "/src/modules/logic.mjs";
 
 function equalityTest() {
-    const EQUALITY = 'Equality';
+    const EQUALITY = 'Equality of models';
 
     test('Identity', () => {
         // given

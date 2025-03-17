@@ -1,6 +1,8 @@
 import { equalityTest } from "./tests/equality/equality-tests.mjs";
-import { singleBlockMovesTests, twoBlockMovesTests } from "./tests/move/move-tests.mjs";
+import { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests } from "./tests/move/move-tests.mjs";
 
 equalityTest();
+
 singleBlockMovesTests();
-twoBlockMovesTests();
+twoHorizontalBlockMoveTests();
+OMoveTests();

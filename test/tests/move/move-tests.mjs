@@ -2,7 +2,7 @@ import { test, assert } from "../../lib/unit-test.mjs"
 import { move, equals } from "/src/modules/logic.mjs";
 
 function singleBlockMovesTests() {
-    const SINGLE_BLOCK_MOVE = 'Single block move';
+    const CAT = 'Single block moves';
 
     test('Single block in 3x3 Matrix, with one move', () => {
         // given
@@ -23,7 +23,7 @@ function singleBlockMovesTests() {
         // then
         assert(equals(result, m2), "block 0, 1 is not on 1, 1");
 
-    }, SINGLE_BLOCK_MOVE)
+    }, CAT)
 
     test('Single block in 3x3 Matrix, with two moves', () => {
         // given
@@ -45,7 +45,7 @@ function singleBlockMovesTests() {
         // then
         assert(equals(result, m2), "block 0, 0 is not on 2, 0");
 
-    }, SINGLE_BLOCK_MOVE)
+    }, CAT)
 
     test('Single block in 3x3 Matrix, with ten moves', () => {
         // given
@@ -69,20 +69,11 @@ function singleBlockMovesTests() {
         // then
         assert(equals(result, m2), "block 0, 0 is not on 2, 0");
 
-    }, SINGLE_BLOCK_MOVE)
+    }, CAT)
 }
 
-function twoBlockMovesTests() {
-    const TWO_BLOCK = 'Two horizontal block moves';
-
-    function model() {
-        return [
-            [0, 1, 1, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-        ];
-    }
+function twoHorizontalBlockMoveTests() {
+    const CAT = 'Two horizontal block moves';
 
     test('Two blocks in 4x4 Matrix, with one move', () => {
         // given
@@ -105,7 +96,7 @@ function twoBlockMovesTests() {
         // then
         assert(equals(result, m2), "blocks row 0 are not in row 1");
 
-    }, TWO_BLOCK)
+    }, CAT)
 
     test('Two blocks in 4x4 Matrix, with two moves', () => {
         // given
@@ -129,7 +120,7 @@ function twoBlockMovesTests() {
         // then
         assert(equals(result, m2), "blocks row 0 are not in row 2");
 
-    }, TWO_BLOCK)
+    }, CAT)
 
     test('Two blocks in 4x4 Matrix, with ten moves', () => {
         // given
@@ -155,7 +146,35 @@ function twoBlockMovesTests() {
         // then
         assert(equals(result, m2), "blocks row 0 are not in row 3, after then moves");
 
-    }, TWO_BLOCK)
+    }, CAT)
 }
 
-export { singleBlockMovesTests, twoBlockMovesTests };
+
+function OMoveTests() {
+    const CAT = 'O move test';
+
+    test('O, with one move', () => {
+        // given
+        let m1 = [
+            [1, 1, 0, 0],
+            [1, 1, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [1, 1, 0, 0],
+            [1, 1, 0, 0],
+            [0, 0, 0, 0],
+        ];
+
+        // when
+        const result = move(m1);
+
+        // then
+        assert(equals(result, m2), "Baseline of T should be in row 1");
+
+    }, CAT)
+}
+
+export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests };
