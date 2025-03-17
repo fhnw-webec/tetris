@@ -6,7 +6,11 @@ function logResult(message, isSuccess, group = 'General') {
         groupElement = document.createElement('section');
         groupElement.id = `group-${group}`;
         groupElement.className = 'test-group';
-        groupElement.innerText = group;
+
+        const groupTitle = document.createElement('h3');
+        groupTitle.innerText = group
+        groupElement.appendChild(groupTitle);
+        
         results.appendChild(groupElement);
     }
 

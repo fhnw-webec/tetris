@@ -1,3 +1,6 @@
-import { groupA } from "./tests/move/move-tests.mjs";
+import { equalityTest } from "./tests/equality/equality-tests.mjs";
+import { singleBlockMovesTests, twoBlockMovesTests } from "./tests/move/move-tests.mjs";
 
-groupA();
+equalityTest();
+singleBlockMovesTests();
+twoBlockMovesTests();
