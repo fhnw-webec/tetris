@@ -1,4 +1,7 @@
-function lookahead(model, code) {
+// T: 1
+// Z: 2
+
+function lookaround(model, code) {
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if(model[row][cell] === code) {
@@ -17,9 +20,8 @@ function move(model) {
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if (model[row][cell] > 0) {
-                // lookahead...
                 if (row + 1 < model.length && copy[row + 1][cell] === 0) { // Not last row
-                    if(lookahead(model, model[row][cell])) {
+                    if(lookaround(model, model[row][cell])) {
                         copy[row + 1][cell] = model[row][cell]; // Move down
                         copy[row][cell] = 0; // Clear previous position
                     }

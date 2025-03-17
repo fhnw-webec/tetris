@@ -2,7 +2,7 @@ import { test, assert } from "../../lib/unit-test.mjs"
 import { move, equals } from "/src/modules/logic.mjs";
 
 function singleBlockMovesTests() {
-    const CAT = 'Single block moves';
+    const CAT = 'Single block moves, empty model';
 
     test('Single block in 3x3 Matrix, with one move', () => {
         // given
@@ -73,7 +73,7 @@ function singleBlockMovesTests() {
 }
 
 function twoHorizontalBlockMoveTests() {
-    const CAT = 'Two horizontal block moves';
+    const CAT = 'Two horizontal block moves, empty model';
 
     test('Two blocks in 4x4 Matrix, with one move', () => {
         // given
@@ -151,7 +151,7 @@ function twoHorizontalBlockMoveTests() {
 
 
 function OMoveTests() {
-    const CAT = 'O move test';
+    const CAT = 'O move test, empty model';
 
     test('O, with one move', () => {
         // given
@@ -228,7 +228,7 @@ function OMoveTests() {
 }
 
 function TMoveTests() {
-    const CAT = 'T move test';
+    const CAT = 'T move test, empty model';
 
     test('T, with one move', () => {
         // given
@@ -277,7 +277,7 @@ function TMoveTests() {
 
     }, CAT)
 
-    test('O, with ten moves', () => {
+    test('T, with ten moves', () => {
         // given
         let m1 = [
             [0, 1, 1, 1],
@@ -304,4 +304,116 @@ function TMoveTests() {
     }, CAT)
 }
 
-export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, TMoveTests };
+function ZMoveTests() {
+    const CAT = 'Z move test, empty model';
+
+    test('Z, with one move', () => {
+        // given
+        let m1 = [
+            [2, 2, 0, 0],
+            [0, 2, 2, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [2, 2, 0, 0],
+            [0, 2, 2, 0],
+            [0, 0, 0, 0],
+        ];
+
+        // when
+        const result = move(m1);
+
+        // then
+        assert(equals(result, m2), "Baseline of Z should be in row 1");
+
+    }, CAT)
+
+    test('Z, with two moves', () => {
+        // given
+        let m1 = [
+            [2, 2, 0, 0],
+            [0, 2, 2, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [2, 2, 0, 0],
+            [0, 2, 2, 0],
+        ];
+
+        // when
+        let result = move(m1);
+        result = move(result);
+
+        // then
+        assert(equals(result, m2), "Baseline of Z should be in row 2");
+
+    }, CAT)
+
+    test('Z, with ten moves', () => {
+        // given
+        let m1 = [
+            [2, 2, 0, 0],
+            [0, 2, 2, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [2, 2, 0, 0],
+            [0, 2, 2, 0],
+        ];
+
+        // when
+        let result = move(m1);
+        for (let index = 1; index < 10; index++) {
+            result = move(result);
+        }
+
+        // then
+        assert(equals(result, m2), "Baseline of Z should be in row 2");
+
+    }, CAT)
+}
+
+function ZMoveTestsNotEmpty() {
+    const CAT = 'Z move test, not empty model';
+
+    test('Z, with ten moves', () => {
+        // given
+        let m1 = [
+            [ 2,  2,  0,  0,  0],
+            [ 0,  2,  2,  0,  0],
+            [ 0,  0,  0,  0,  0],
+            [11, 11, 11,  0,  0],
+            [ 0, 11,  0,  0,  0],
+        ];
+        let m2 = [
+            [ 0,  0,  0,  0,  0],
+            [ 2,  2,  0,  0,  0],
+            [ 0,  2,  2,  0,  0],
+            [11, 11, 11,  0,  0],
+            [ 0, 11,  0,  0,  0],
+        ];
+
+        // when
+        let result = move(m1);
+        for (let index = 1; index < 10; index++) {
+            result = move(result);
+        }
+
+        console.log(result);
+
+        // then
+        assert(equals(result, m2), "Baseline of Z should be in row 1");
+
+    }, CAT)
+
+}
+
+export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, TMoveTests, ZMoveTests, ZMoveTestsNotEmpty };
