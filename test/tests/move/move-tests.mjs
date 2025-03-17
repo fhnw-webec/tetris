@@ -175,6 +175,133 @@ function OMoveTests() {
         assert(equals(result, m2), "Baseline of T should be in row 1");
 
     }, CAT)
+
+    test('O, with two moves', () => {
+        // given
+        let m1 = [
+            [1, 1, 0, 0],
+            [1, 1, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [1, 1, 0, 0],
+            [1, 1, 0, 0],
+        ];
+
+        // when
+        let result = move(m1);
+        result = move(result);
+
+        // then
+        assert(equals(result, m2), "Baseline of T should be in row 2");
+
+    }, CAT)
+
+    test('O, with ten moves', () => {
+        // given
+        let m1 = [
+            [1, 1, 0, 0],
+            [1, 1, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [1, 1, 0, 0],
+            [1, 1, 0, 0],
+        ];
+
+        // when
+        let result = move(m1);
+        for (let index = 1; index < 10; index++) {
+            result = move(result);
+        }
+
+        // then
+        assert(equals(result, m2), "Baseline of T should be in row 2");
+
+    }, CAT)
 }
 
-export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests };
+function TMoveTests() {
+    const CAT = 'T move test';
+
+    test('T, with one move', () => {
+        // given
+        let m1 = [
+            [0, 1, 1, 1],
+            [0, 0, 1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 1, 1, 1],
+            [0, 0, 1, 0],
+            [0, 0, 0, 0],
+        ];
+
+        // when
+        const result = move(m1);
+
+        // then
+        assert(equals(result, m2), "Baseline of T should be in row 1");
+
+    }, CAT)
+
+    test('T, with two moves', () => {
+        // given
+        let m1 = [
+            [0, 1, 1, 1],
+            [0, 0, 1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 1, 1, 1],
+            [0, 0, 1, 0],
+        ];
+
+        // when
+        let result = move(m1);
+        result = move(result);
+
+        // then
+        assert(equals(result, m2), "Baseline of T should be in row 2");
+
+    }, CAT)
+
+    test('O, with ten moves', () => {
+        // given
+        let m1 = [
+            [0, 1, 1, 1],
+            [0, 0, 1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ];
+        let m2 = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 1, 1, 1],
+            [0, 0, 1, 0],
+        ];
+
+        // when
+        let result = move(m1);
+        for (let index = 1; index < 10; index++) {
+            result = move(result);
+        }
+
+        // then
+        assert(equals(result, m2), "Baseline of T should be in row 2");
+
+    }, CAT)
+}
+
+export { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, TMoveTests };

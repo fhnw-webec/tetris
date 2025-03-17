@@ -1,17 +1,38 @@
+function lookahead(model, code) {
+    for (let row = model.length - 1; row >= 0; row--) {
+        for (let cell = 0; cell < model[row].length; cell++) {
+            if(model[row][cell] === code) {
+                if(row + 1 >= model.length || model[row + 1][cell] > 10) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+
 function move(model) {
     let copy = structuredClone(model);
-    for (let row = 0; row < model.length; row++) {
+    for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if (model[row][cell] > 0) {
-                if ((row + 1) < model.length) {
-                    copy[row + 1][cell] = model[row][cell]; // next
-                    copy[row][cell] = 0; // previous
+                // lookahead...
+                if (row + 1 < model.length && copy[row + 1][cell] === 0) { // Not last row
+                    if(lookahead(model, model[row][cell])) {
+                        copy[row + 1][cell] = model[row][cell]; // Move down
+                        copy[row][cell] = 0; // Clear previous position
+                    }
+                    else {
+                        // no move possible, mark it n + 10
+                    }
                 }
             }
         }
     }
     return copy;
 }
+
 
 // const move = model =>
 //     model.map((row, rowIndex) =>
