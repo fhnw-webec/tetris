@@ -5,11 +5,13 @@ const isActiveTetromino = (model, row, cell) => (0 < model[row][cell] && model[r
 
 const hasCollision = model => !hasSpaceAround(model)
 
-const hasSpaceAround = model => {
+const hasBottomSpace = (model, row, cell) => (row + 1 >= model.length || model[row + 1][cell] > 10);
+
+const hasSpaceAround = (model, predicate = hasBottomSpace) => {
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if (isActiveTetromino(model, row, cell)) {
-                if (row + 1 >= model.length || model[row + 1][cell] > 10) {
+                if (predicate(model, row, cell)) {
                     return false;
                 }
             }
