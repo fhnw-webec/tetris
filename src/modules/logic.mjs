@@ -5,9 +5,7 @@ const isActiveTetromino = (model, row, cell) => (0 < model[row][cell] && model[r
 
 const hasCollision = model => !hasSpaceAround(model)
 
-const hasBottomSpace = (model, row, cell) => (row + 1 >= model.length || model[row + 1][cell] > 10);
-
-const hasSpaceAround = (model, predicate = hasBottomSpace) => {
+const hasSpaceAround = (model, predicate = hasLanded) => {
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if (isActiveTetromino(model, row, cell)) {
@@ -20,20 +18,38 @@ const hasSpaceAround = (model, predicate = hasBottomSpace) => {
     return true;
 }
 
-const move = model => {
+const doMove = (model, action, predicate) => {
     let copy = structuredClone(model);
     for (let row = model.length - 1; row >= 0; row--) {
         for (let cell = 0; cell < model[row].length; cell++) {
             if (isActiveTetromino(model, row, cell)) {
-                if (hasSpaceAround(model)) {
-                    copy[row + 1][cell] = model[row][cell]; // Move down
-                    copy[row][cell] = 0; // Clear previous position
+                if (hasSpaceAround(model, predicate)) {
+                    action(copy, row, cell);
                 }
             }
         }
     }
     return hasCollision(copy) ? mark(copy) : copy;
 }
+
+const moveDown = (model, row, cell) => {
+    model[row + 1][cell] = model[row][cell]; // Move down
+    model[row][cell] = 0; // Clear previous position
+}
+
+const hasLanded = (model, row, cell) => (row + 1 >= model.length || model[row + 1][cell] > 10);
+
+const move = model => doMove(model, moveDown, hasLanded);
+
+
+const moveLeft = (model, row, cell) => {
+    model[row][cell - 1] = model[row][cell]; // Move down
+    model[row][cell] = 0; // Clear previous position
+}
+
+const collidesLeft = (model, row, cell) => (cell - 1 < 0 || model[row][cell - 1] > 10);
+
+const left = model => doMove(model, moveLeft, collidesLeft);
 
 const equals = (m1, m2) =>
     m1.length === m2.length &&
@@ -42,4 +58,4 @@ const equals = (m1, m2) =>
         row.every((cell, j) => cell === m2[i][j])
     );
 
-export { move, equals };
+export { move, left, equals };
