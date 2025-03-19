@@ -19,7 +19,6 @@ function rightTests() {
 
         // when
         const result = right(m1);
-        console.log(result)
 
         // then
         assert(equals(result, m2), "O is not on right edge");
