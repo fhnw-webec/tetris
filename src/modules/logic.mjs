@@ -52,7 +52,12 @@ const left = model => doMove(model, moveLeft, collidesLeft);
 
 
 // right
-const right = model => doMove(model, moveLeft, collidesLeft);
+const moveRight = (model, row, cell) => model[row][cell + 1] = model[row][cell];
+
+const collidesRight = (model, row, cell) => (cell + 1 >= model[0].length || model[row][cell + 1] > LANDED);
+
+const right = model => doMove(model, moveRight, collidesRight);
+
 
 // equals
 const equals = (m1, m2) =>
