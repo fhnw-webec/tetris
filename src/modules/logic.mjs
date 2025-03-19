@@ -51,6 +51,9 @@ const collidesLeft = (model, row, cell) => (cell - 1 < 0 || model[row][cell - 1]
 const left = model => doMove(model, moveLeft, collidesLeft);
 
 
+// right
+const right = model => doMove(model, moveLeft, collidesLeft);
+
 // equals
 const equals = (m1, m2) =>
     m1.length === m2.length &&
@@ -59,4 +62,4 @@ const equals = (m1, m2) =>
         row.every((cell, j) => cell === m2[i][j])
     );
 
-export { move, left, equals };
+export { move, left, right, equals };
