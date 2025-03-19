@@ -2,7 +2,7 @@ import { test, assert } from "../../lib/unit-test.mjs"
 import { left, move, equals } from "/src/modules/logic.mjs";
 
 function oneLeftTest() {
-    const CAT = 'Left: O moves, empty model';
+    const CAT = 'Left';
 
     test('O moves in 3x3 matrix, with one left', () => {
         // given
@@ -127,13 +127,13 @@ function oneLeftTest() {
         let result = left(m1);
         result = left(result);
         result = left(result);
-        result = left(result); // test, if it stays
+        result = left(result); // test, if it stopps
         result = move(result);
         result = move(result);
         result = move(result);
 
         // then
-        assert(equals(result, m2), "O, is not on left edge");
+        assert(equals(result, m2), "O, is not in col 4 and landed");
 
     }, CAT);
 
