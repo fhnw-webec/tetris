@@ -51,12 +51,19 @@ const isValid = (model, tetromino) => tetromino.every(block =>
 
 const clear = model => model.map(row => row.map(cell => cell < LANDED ? 0 : cell));
 
+const type = model => model.flat().find(e => e > 0 && e < LANDED) || 0;
+
 const applyTetromino = (tetromino, model) => tetromino.reduce((acc, block) => {
-    acc[head(block)][last(block)] = 1; // which one is that? Use an object version for tetromino
+    acc[head(block)][last(block)] = type(model);
     return acc;
 }, clear(model));
 
-const move1 = model => applyTetromino(simulateMove(activeTetromino(model), 0, 1), model) // right
+const move = model => {
+    const a = activeTetromino(model);
+    const s = simulateMove(a, 1, 0);
+    const r = isValid(model, s) ? applyTetromino(s, model) : model;
+    return hasCollisionWithButtom(r) ? mark(r) : r;
+}
 
 
 
@@ -65,7 +72,7 @@ const moveDown = (model, row, cell) => model[row + 1][cell] = model[row][cell];
 
 const hasLanded = (model, row, cell) => (row + 1 >= model.length || model[row + 1][cell] > LANDED);
 
-const move = model => doMove(model, moveDown, hasLanded);
+//const move = model => doMove(model, moveDown, hasLanded);
 
 
 // left

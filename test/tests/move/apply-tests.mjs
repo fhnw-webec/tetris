@@ -75,6 +75,34 @@ function applyTests() {
         assert(equals(result, m2), "tetromino is not at the correct position");
 
     }, CAT);
+
+    test('Apply I on non empty model', () => {
+        // given
+        const m1 = [
+            [ 1,  1,  1,  1],
+            [ 0,  0,  0,  0],
+            [ 0,  0,  0,  0],
+            [ 0,  0, 12, 12],
+            [ 0,  0, 12, 12],
+        ];
+        const tetromino = [
+            [1, 0], [1, 1], [1, 2], [1, 3]
+        ];
+        const m2 = [
+            [ 0,  0,  0,  0],
+            [ 1,  1,  1,  1],
+            [ 0,  0,  0,  0],
+            [ 0,  0, 12, 12],
+            [ 0,  0, 12, 12],
+        ];
+
+        // when
+        const result = applyTetromino(tetromino, m1);
+
+        // then
+        assert(equals(result, m2), "tetromino is not at the correct position");
+
+    }, CAT);
 }
 
 export { applyTests };
