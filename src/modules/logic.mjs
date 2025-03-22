@@ -35,6 +35,31 @@ const doMove = (model, action, predicate) => {
     return hasCollisionWithButtom(copy) ? mark(copy) : copy;
 }
 
+// codes: 1: I, 2: O, 3: T, 4: J, 5: L, 6: S, 7: Z
+
+const head = list => list[0];
+const last = list => list[list.length - 1];
+
+const activeTetromino = model =>
+    model.flatMap((row, i) => row.flatMap((cell, j) => cell < LANDED && cell > 0 ? [[i, j]] : []));
+
+const simulateMove = (tetromino, dx, dy) =>
+    tetromino.map(block => [head(block) + dx, last(block) + dy]);
+
+const isValid = (model, tetromino) => tetromino.every(block =>
+    head(block) < model.length && last(block) < model[0].length && model[head(block)][last(block)] < LANDED);
+
+const clear = model => model.map(row => row.map(cell => cell < LANDED ? 0 : cell));
+
+const applyTetromino = (tetromino, model) => tetromino.reduce((acc, block) => {
+    acc[head(block)][last(block)] = 1; // which one is that? Use an object version for tetromino
+    return acc;
+}, clear(model));
+
+const move1 = model => applyTetromino(simulateMove(activeTetromino(model), 0, 1), model) // right
+
+
+
 // move
 const moveDown = (model, row, cell) => model[row + 1][cell] = model[row][cell];
 
@@ -67,4 +92,4 @@ const equals = (m1, m2) =>
         row.every((cell, j) => cell === m2[i][j])
     );
 
-export { move, left, right, equals };
+export { activeTetromino, simulateMove, isValid, applyTetromino, move, left, right, equals };
