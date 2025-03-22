@@ -1,5 +1,5 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { isValid } from "../../../src/modules/logic.mjs";
+import { isValidMove } from "../../../src/modules/logic.mjs";
 
 function validTests() {
     const CAT = 'Tests if tetrominos are valid';
@@ -16,7 +16,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValid(matrix, tetromino);
+        const result = isValidMove(matrix, tetromino);
 
         // then
         assert(result, "Not top left O tetromino");
@@ -35,7 +35,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValid(matrix, tetromino);
+        const result = isValidMove(matrix, tetromino);
 
         // then
         assert(result, "Not bottom O tetromino");
@@ -54,7 +54,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValid(matrix, tetromino);
+        const result = isValidMove(matrix, tetromino);
 
         // then
         assert(!result, "Not a valid move");
@@ -73,7 +73,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValid(matrix, tetromino);
+        const result = isValidMove(matrix, tetromino);
 
         // then
         assert(!result, "Not a valid move");
@@ -97,7 +97,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValid(matrix, tetromino);
+        const result = isValidMove(matrix, tetromino);
 
         // then
         assert(result, "Valid move");
@@ -121,7 +121,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValid(matrix, tetromino);
+        const result = isValidMove(matrix, tetromino);
 
         // then
         assert(!result, "Not a valid move");

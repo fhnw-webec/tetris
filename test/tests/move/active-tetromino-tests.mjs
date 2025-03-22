@@ -17,7 +17,6 @@ function activeTetrominoTests() {
 
         // when
         const result = activeTetromino(matrix);
-        console.log(result)
 
         // then
         assert(equals(result, tetromino), "Not top left O tetromino");
