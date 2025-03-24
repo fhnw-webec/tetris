@@ -7,15 +7,15 @@ function simulationTests() {
     test('O goes dx = 1', () => {
         // given
         const t1 = [
-            [0, 0], [0, 1], [1, 0], [1, 1]
+            [0, 0], [1, 0], [0, 1], [1, 1]
         ];
 
         const t2 = [
-            [0, 1], [0, 2], [1, 1], [1, 2]
+            [1, 0], [2, 0], [1, 1], [2, 1]
         ];
 
         // when
-        const right = simulateMove(t1, 0, 1);
+        const right = simulateMove(t1, 1, 0);
 
         // then
         assert(equals(t2, right), "Not moved dx = 1");
@@ -29,11 +29,11 @@ function simulationTests() {
         ];
 
         const t2 = [
-            [1, 0], [1, 1], [2, 0], [2, 1]
+            [0, 1], [0, 2], [1, 1], [1, 2]
         ];
 
         // when
-        const right = simulateMove(t1, 1, 0);
+        const right = simulateMove(t1, 0, 1);
 
         // then
         assert(equals(t2, right), "Not moved dy = 1");

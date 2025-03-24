@@ -77,13 +77,13 @@ function twoHorizontalBlockMoveTests() {
 
     test('Two blocks in 4x4 Matrix, with one move', () => {
         // given
-        let m1 = [
+        const m1 = [
             [0, 1, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
-        let m2 = [
+        const m2 = [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
             [0, 0, 0, 0],
@@ -100,13 +100,13 @@ function twoHorizontalBlockMoveTests() {
 
     test('Three blocks in 4x4 Matrix, with two moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [1, 1, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
-        let m2 = [
+        const m2 = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [1, 1, 1, 0],
@@ -124,13 +124,13 @@ function twoHorizontalBlockMoveTests() {
 
     test('Three blocks in 4x4 Matrix, with ten moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 1,  1,  1,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
@@ -155,13 +155,13 @@ function OMoveTests() {
 
     test('O, with one move', () => {
         // given
-        let m1 = [
+        const m1 = [
             [1, 1, 0, 0],
             [1, 1, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
-        let m2 = [
+        const m2 = [
             [0, 0, 0, 0],
             [1, 1, 0, 0],
             [1, 1, 0, 0],
@@ -178,13 +178,13 @@ function OMoveTests() {
 
     test('O, with two moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 1,  1,  0,  0],
             [ 1,  1,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [11, 11,  0,  0],
@@ -202,13 +202,13 @@ function OMoveTests() {
 
     test('O, with ten moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 1,  1,  0,  0],
             [ 1,  1,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [11, 11,  0,  0],
@@ -232,13 +232,13 @@ function TMoveTests() {
 
     test('T, with one move', () => {
         // given
-        let m1 = [
+        const m1 = [
             [0, 1, 1, 1],
             [0, 0, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
-        let m2 = [
+        const m2 = [
             [0, 0, 0, 0],
             [0, 1, 1, 1],
             [0, 0, 1, 0],
@@ -255,13 +255,13 @@ function TMoveTests() {
 
     test('T, with two moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 0,  1,  1,  1],
             [ 0,  0,  1,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0, 11, 11, 11],
@@ -279,13 +279,13 @@ function TMoveTests() {
 
     test('T, with ten moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 0,  1,  1,  1],
             [ 0,  0,  1,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0, 11, 11, 11],
@@ -309,13 +309,13 @@ function ZMoveTests() {
 
     test('Z, with one move', () => {
         // given
-        let m1 = [
+        const m1 = [
             [2, 2, 0, 0],
             [0, 2, 2, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
-        let m2 = [
+        const m2 = [
             [0, 0, 0, 0],
             [2, 2, 0, 0],
             [0, 2, 2, 0],
@@ -332,13 +332,13 @@ function ZMoveTests() {
 
     test('Z, with two moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 2,  2,  0,  0],
             [ 0,  2,  2,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [12, 12,  0,  0],
@@ -356,13 +356,13 @@ function ZMoveTests() {
 
     test('Z, with ten moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 2,  2,  0,  0],
             [ 0,  2,  2,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [12, 12,  0,  0],
@@ -386,14 +386,14 @@ function ZMoveTestsNotEmpty() {
 
     test('Z, with ten moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 2,  2,  0,  0,  0],
             [ 0,  2,  2,  0,  0],
             [ 0,  0,  0,  0,  0],
             [11, 11, 11,  0,  0],
             [ 0, 11,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0,  0],
             [12, 12,  0,  0,  0],
             [ 0, 12, 12,  0,  0],
@@ -414,14 +414,14 @@ function ZMoveTestsNotEmpty() {
 
     test('Z, with two moves, collides with T', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 0,  0,  2,  2,  0],
             [ 0,  0,  0,  2,  2],
             [ 0,  0,  0,  0,  0],
             [11, 11, 11,  0,  0],
             [ 0, 11,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0],
             [ 0,  0, 12, 12,  0],
@@ -440,14 +440,14 @@ function ZMoveTestsNotEmpty() {
 
     test('T, with three moves, collides with Z', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 0,  0,  2,  2,  0],
             [ 0,  0,  0,  2,  2],
             [ 0,  0,  0,  0,  0],
             [ 0, 11,  0,  0,  0],
             [11, 11, 11,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0],
@@ -472,7 +472,7 @@ function ZTIMovesNonEmpty() {
 
     test('Z, with 15 moves', () => {
         // given
-        let m1 = [
+        const m1 = [
             [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
@@ -494,7 +494,7 @@ function ZTIMovesNonEmpty() {
             [11, 11, 12, 12,  0,  0,  0,  0,  0,  0],
             [11, 11, 11, 12, 12,  0,  0,  0,  0,  0],
         ];
-        let m2 = [
+        const m2 = [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],

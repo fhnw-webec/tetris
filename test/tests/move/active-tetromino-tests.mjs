@@ -12,7 +12,7 @@ function activeTetrominoTests() {
             [0, 0, 0]
         ];
         const tetromino = [
-            [0, 0], [0, 1], [1, 0], [1, 1]
+            [0, 0], [1, 0], [0, 1], [1, 1]
         ];
 
         // when
@@ -31,7 +31,7 @@ function activeTetrominoTests() {
             [0, 0, 0, 0]
         ];
         const tetromino = [
-            [0, 1], [0, 2], [0, 3], [1, 2]
+            [1, 0], [2, 0], [3, 0], [2, 1]
         ];
 
         // when
@@ -53,7 +53,7 @@ function activeTetrominoTests() {
             [0, 0, 12, 12, 0, 0],
         ];
         const tetromino = [
-            [0, 1], [0, 2], [0, 3], [1, 2]
+            [1, 0], [2, 0], [3, 0], [2, 1]
         ];
 
         // when
