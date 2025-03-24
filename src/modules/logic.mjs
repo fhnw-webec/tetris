@@ -1,9 +1,8 @@
+import { x, y } from "/src/modules/utils.mjs";
+
 // coordinate-system: origin is at upper left, x is horizontal, y is vertical
 // codes: I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7
 const LANDED = 10;
-
-const x = list => list[0];
-const y = list => list[list.length - 1];
 
 const activeTetromino = model =>
     model.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
