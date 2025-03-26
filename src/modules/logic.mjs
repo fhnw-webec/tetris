@@ -1,11 +1,7 @@
-import { x, y } from "/src/modules/utils.mjs";
+import { x, y, activeTetromino, LANDED } from "/src/modules/utils.mjs";
 
 // coordinate-system: origin is at upper left, x is horizontal, y is vertical
 // codes: I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7
-const LANDED = 10;
-
-const activeTetromino = model =>
-    model.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
 
 const simulateMove = (tetromino, dx, dy) =>
     tetromino.map(block => [x(block) + dx, y(block) + dy]);
@@ -49,4 +45,4 @@ const equals = (m1, m2) =>
         row.every((cell, j) => cell === m2[i][j])
     );
 
-export { activeTetromino, simulateMove, isValidMove, applyTetromino, move, left, right, equals };
+export { simulateMove, isValidMove, applyTetromino, move, left, right, equals };

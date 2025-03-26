@@ -1,4 +1,5 @@
-import { x, y } from '/src/modules/utils.mjs';
+import { x, y, activeTetromino } from '/src/modules/utils.mjs';
+import { applyTetromino } from './logic.mjs';
 
 const xs = tetromino => tetromino.map(x);
 const ys = tetromino => tetromino.map(y);
@@ -10,13 +11,16 @@ const pivot = tetromino =>
     [Math.round((min(tetromino, xs) + max(tetromino, xs)) / 2), 
      Math.round((min(tetromino, ys) + max(tetromino, ys)) / 2)]
 
-const rotate = model => model;
+const c90 = px => py => block =>
+    [Math.round(-y(block) + py + px), Math.round(x(block) - px + py)]
 
-// (x', y') = (x - pivot.x, y - pivot.y)
+const cc90 = px => py => block =>
+    [Math.round(y(block) - py + px), Math.round(-x(block) + px + py)]
 
-//  90 CW: (x, y) → ( y', -x') + pivot
-// 180 CW: (x, y) → (-x', -y') + pivot
-// 270 CW: (x, y) → (-y',  x') + pivot
+const _rotate = (model, rotationFn) => 
+    applyTetromino(activeTetromino(model).map(rotationFn), model);
 
+const rotateCW  = (px, py, model) => _rotate(model, c90(px)(py))
+const rotateCCW = (px, py, model) => _rotate(model, cc90(px)(py))
 
-export { rotate, min, max, xs, ys, pivot };
+export { rotateCW, rotateCCW, min, max, xs, ys, pivot };

@@ -1,5 +1,5 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
-import { rotate, xs, ys, min, max, pivot } from "/src/modules/rotation.mjs";
+import { rotateCW, rotateCCW, xs, ys, min, max, pivot } from "/src/modules/rotation.mjs";
 import { equals } from "/src/modules/logic.mjs";
 import { x, y } from "/src/modules/utils.mjs";
 
@@ -55,22 +55,30 @@ function rotationTest() {
 
     }, ROTATION);
 
-    test('T, 90 CW', () => {
+    test('T, 90 CCW, CW, CCW', () => {
         // given
         const m1 = [
-            [0, 1, 0],
-            [1, 1, 1],
-            [0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 3, 0, 0, 0],
+            [0, 0, 3, 3, 0, 0],
+            [0, 0, 3, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
         ];
 
         const m2 = [
-            [0, 1, 0],
-            [0, 1, 1],
-            [0, 1, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 3, 0, 0, 0],
+            [0, 3, 3, 3, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
         ];
 
         // when
-        const result = rotate(m1);
+        let result = rotateCCW(2, 2, m1);
+        result = rotateCW(2, 2, result);
+        result = rotateCCW(2, 2, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");

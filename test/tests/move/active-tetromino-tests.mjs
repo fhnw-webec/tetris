@@ -1,5 +1,6 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { activeTetromino, equals } from "../../../src/modules/logic.mjs";
+import { equals } from "../../../src/modules/logic.mjs";
+import { activeTetromino } from "/src/modules/utils.mjs";
 
 function activeTetrominoTests() {
     const CAT = 'Active Tetromino Tests';
