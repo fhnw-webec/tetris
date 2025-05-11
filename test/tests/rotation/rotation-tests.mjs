@@ -24,11 +24,13 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 1;
+        const y = 1;
 
         // when
-        let result = rotateCCW(2, 2, m1);
-        result = rotateCW(2, 2, result);
-        result = rotateCCW(2, 2, result);
+        let result = rotateCCW(x, y, m1);
+        result = rotateCW(x, y, result);
+        result = rotateCCW(x, y, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -54,10 +56,12 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 2;
+        const y = 1;
 
         // when
-        let result = rotateCW(3, 2, m1);
-        result = rotateCW(3, 2, result);
+        let result = rotateCW(x, y, m1);
+        result = rotateCW(x, y, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -83,11 +87,13 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 1;
+        const y = 1;
 
         // when
-        let result = rotateCW(2, 2, m1);
-        result = rotateCW(2, 2, result);
-        result = rotateCW(2, 2, result);
+        let result = rotateCW(x, y, m1);
+        result = rotateCW(x, y, result);
+        result = rotateCW(x, y, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -113,9 +119,11 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 1;
+        const y = 1;
 
         // when
-        let result = rotateCCW(2, 2, m1);
+        let result = rotateCCW(x, y, m1);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -141,10 +149,12 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 1;
+        const y = 2;
 
         // when
-        let result = rotateCCW(2, 3, m1);
-        result = rotateCCW(2, 3, result);
+        let result = rotateCCW(x, y, m1);
+        result = rotateCCW(x, y, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -170,9 +180,11 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 0;
+        const y = 0;
 
         // when
-        let result = rotateCW(1.5, 1.5, m1);
+        let result = rotateCW(x, y, m1);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -198,10 +210,12 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
+        const x = 0;
+        const y = 0;
 
         // when
-        let result = rotateCW(1.5, 1.5, m1);
-        result = rotateCW(1.5, 1.5, result);
+        let result = rotateCW(0, 0, m1);
+        result = rotateCW(0, 0, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -227,16 +241,13 @@ function rotationTest() {
             [0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        const xOffset = 1;
-        const yOffset = 1;
-        const pivot = 1.5;
-        const px = xOffset + pivot;
-        const py = yOffset + pivot;
+        const x = 1;
+        const y = 1;
 
         // when
-        let result = rotateCW(px, py, m1);
-        result = rotateCW(px, py, result);
-        result = rotateCW(px, py, result);
+        let result = rotateCW(x, y, m1);
+        result = rotateCW(x, y, result);
+        result = rotateCW(x, y, result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -262,14 +273,11 @@ function rotationTest() {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        const xOffset = 1;
-        const yOffset = 2;
-        const pivot = 0.5;
-        const px = xOffset + pivot;
-        const py = yOffset + pivot;
+        const x = 1;
+        const y = 2;
 
         // when
-        let result = rotateCW(px, py, m1);
+        let result = rotateCW(x, y, m1);
 
         // then
         assert(equals(result, m2), "not correctly rotated");

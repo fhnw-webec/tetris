@@ -45,4 +45,4 @@ const equals = (m1, m2) =>
         row.every((cell, j) => cell === m2[i][j])
     );
 
-export { simulateMove, isValidMove, applyTetromino, move, left, right, equals };
+export { simulateMove, isValidMove, applyTetromino, move, left, right, equals, type };
