@@ -65,6 +65,28 @@ function activeTetrominoTests() {
 
     }, CAT);
 
+    test('I middle (1,4), with non empty model', () => {
+        // given
+        const matrix = [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 0],
+            [0, 0, 12, 12, 0, 0],
+            [0, 0, 12, 12, 0, 0],
+        ];
+        const tetromino = [
+            [1, 3], [2, 3], [3, 3], [4, 3]
+        ];
+
+        // when
+        const result = activeTetromino(matrix);
+
+        // then
+        assert(equals(result, tetromino), "Not top right T tetromino");
+
+    }, CAT);
+
 }
 
 export { activeTetrominoTests };

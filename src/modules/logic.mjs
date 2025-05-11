@@ -1,7 +1,7 @@
 import { x, y, activeTetromino, LANDED } from "/src/modules/utils.mjs";
 
 // coordinate-system: origin is at upper left, x is horizontal, y is vertical
-// codes: I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7
+// codes: 0: empty, I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7, 9: fill for bounding box
 
 const simulateMove = (tetromino, dx, dy) =>
     tetromino.map(block => [x(block) + dx, y(block) + dy]);
