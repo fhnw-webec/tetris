@@ -1,8 +1,8 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { simulateMove, equals } from "../../../src/modules/logic.mjs";
+import { simulateMove, equalsMatrix } from "../../../src/modules/logic.mjs";
 
 function simulationTests() {
-    const CAT = 'Simulate Moves form Tetrominos';
+    const CAT = 'Simulate moves';
 
     test('O goes dx = 1', () => {
         // given
@@ -18,7 +18,7 @@ function simulationTests() {
         const right = simulateMove(t1, 1, 0);
 
         // then
-        assert(equals(t2, right), "Not moved dx = 1");
+        assert(equalsMatrix(t2, right), "Not moved dx = 1");
 
     }, CAT);
 
@@ -36,7 +36,7 @@ function simulationTests() {
         const right = simulateMove(t1, 0, 1);
 
         // then
-        assert(equals(t2, right), "Not moved dy = 1");
+        assert(equalsMatrix(t2, right), "Not moved dy = 1");
 
     }, CAT);
 
@@ -54,7 +54,7 @@ function simulationTests() {
         const right = simulateMove(t1, 2, 1);
 
         // then
-        assert(equals(t2, right), "Not moved dx = 2, dy = 1");
+        assert(equalsMatrix(t2, right), "Not moved dx = 2, dy = 1");
 
     }, CAT);
 
@@ -72,7 +72,7 @@ function simulationTests() {
         const right = simulateMove(t1, 0, 0);
 
         // then
-        assert(equals(t2, right), "Should not move");
+        assert(equalsMatrix(t2, right), "Should not move");
 
     }, CAT);
 }

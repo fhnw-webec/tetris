@@ -1,36 +1,35 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
 import { rotateCW, rotateCCW } from "/src/modules/rotation.mjs";
 import { equals } from "/src/modules/logic.mjs";
+import { applyMatrix } from "/src/modules/utils.mjs";
 
 function rotationTest() {
-    const ROTATION = 'Rotation tests';
+    const ROTATION = 'Basic rotation tests';
 
     test('T, 90 CCW, CW, CCW', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 0, 3, 3, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 3, 3, 3, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 1;
-        const y = 1;
+        ]);
 
         // when
-        let result = rotateCCW(x, y, m1);
-        result = rotateCW(x, y, result);
-        result = rotateCCW(x, y, result);
+        let result = rotateCCW(m1);
+        result = rotateCW(result);
+        result = rotateCCW(result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -39,29 +38,27 @@ function rotationTest() {
 
     test('J, CW, CW = 180', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(2)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 4, 0, 0, 0],
             [0, 0, 4, 4, 4, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(2)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 4, 4, 4, 0],
             [0, 0, 0, 0, 4, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 2;
-        const y = 1;
+        ]);
 
         // when
-        let result = rotateCW(x, y, m1);
-        result = rotateCW(x, y, result);
+        let result = rotateCW(m1);
+        result = rotateCW(result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -70,30 +67,28 @@ function rotationTest() {
 
     test('L, CW, CW, CW = 270', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 5, 0, 0, 0],
             [0, 0, 5, 0, 0, 0],
             [0, 0, 5, 5, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 5, 0, 0],
             [0, 5, 5, 5, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 1;
-        const y = 1;
+        ]);
 
         // when
-        let result = rotateCW(x, y, m1);
-        result = rotateCW(x, y, result);
-        result = rotateCW(x, y, result);
+        let result = rotateCW(m1);
+        result = rotateCW(result);
+        result = rotateCW(result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -102,28 +97,26 @@ function rotationTest() {
 
     test('S, CCW, -90', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 6, 0, 0, 0],
             [0, 0, 6, 6, 0, 0],
             [0, 0, 0, 6, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 6, 6, 0, 0],
             [0, 6, 6, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 1;
-        const y = 1;
+        ]);
 
         // when
-        let result = rotateCCW(x, y, m1);
+        let result = rotateCCW(m1);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -132,29 +125,27 @@ function rotationTest() {
 
     test('Z, CCW, CCW -180', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(2)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 7, 7, 0, 0, 0],
             [0, 0, 7, 7, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(1)(2)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 7, 7, 0, 0, 0],
             [0, 0, 7, 7, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 1;
-        const y = 2;
+        ]);
 
         // when
-        let result = rotateCCW(x, y, m1);
-        result = rotateCCW(x, y, result);
+        let result = rotateCCW(m1);
+        result = rotateCCW(result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -163,28 +154,26 @@ function rotationTest() {
 
     test('I, CW = 90', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(0)([
             [0, 0, 0, 0, 0, 0],
-            [1, 1, 1, 1, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ]);
 
-        const m2 = [
-            [0, 0, 1, 0, 0, 0],
-            [0, 0, 1, 0, 0, 0],
-            [0, 0, 1, 0, 0, 0],
-            [0, 0, 1, 0, 0, 0],
+        const m2 = applyMatrix(1)(0)([
+            [0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 0;
-        const y = 0;
+        ]);
 
         // when
-        let result = rotateCW(x, y, m1);
+        let result = rotateCW(m1);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -193,29 +182,27 @@ function rotationTest() {
 
     test('I, CW, CW = 180', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(0)(0)([
             [0, 0, 0, 0, 0, 0],
             [1, 1, 1, 1, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(0)(0)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [1, 1, 1, 1, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 0;
-        const y = 0;
+        ]);
 
         // when
-        let result = rotateCW(0, 0, m1);
-        result = rotateCW(0, 0, result);
+        let result = rotateCW(m1);
+        result = rotateCW(result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -224,30 +211,28 @@ function rotationTest() {
 
     test('I, CW, CW, CW = 180', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 1, 1, 1, 1, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(1)(1)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 1;
-        const y = 1;
+        ]);
 
         // when
-        let result = rotateCW(x, y, m1);
-        result = rotateCW(x, y, result);
-        result = rotateCW(x, y, result);
+        let result = rotateCW(m1);
+        result = rotateCW(result);
+        result = rotateCW(result);
 
         // then
         assert(equals(result, m2), "not correctly rotated");
@@ -256,28 +241,26 @@ function rotationTest() {
 
     test('O, CW = 90', () => {
         // given
-        const m1 = [
+        const m1 = applyMatrix(1)(2)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
+        ]);
 
-        const m2 = [
+        const m2 = applyMatrix(1)(2)([
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ];
-        const x = 1;
-        const y = 2;
+        ]);
 
         // when
-        let result = rotateCW(x, y, m1);
+        let result = rotateCW(m1);
 
         // then
         assert(equals(result, m2), "not correctly rotated");

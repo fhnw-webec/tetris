@@ -1,16 +1,17 @@
 import { test, assert } from "../../lib/unit-test.mjs"
 import { isValidMove } from "../../../src/modules/logic.mjs";
+import { applyMatrix } from "/src/modules/utils.mjs";
 
 function validTests() {
-    const CAT = 'Tests if tetrominos are valid';
+    const CAT = 'Tests if moves are valid';
 
     test('O move is valid, right', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(0)(0)([
             [1, 1, 0],
             [1, 1, 0],
             [0, 0, 0]
-        ];
+        ]);
         const tetromino = [
             [1, 0], [2, 0], [1, 1], [2, 1]
         ];
@@ -25,11 +26,11 @@ function validTests() {
 
     test('O move is valid, down', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(0)(0)([
             [1, 1, 0],
             [1, 1, 0],
             [0, 0, 0]
-        ];
+        ]);
         const tetromino = [
             [0, 1], [1, 1], [0, 2], [1, 2]
         ];
@@ -44,11 +45,11 @@ function validTests() {
 
     test('O move is not valid, off right bounds', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(1)(0)([
             [0, 1, 1],
             [0, 1, 1],
             [0, 0, 0]
-        ];
+        ]);
         const tetromino = [
             [2, 0], [3, 0], [2, 1], [3, 1]
         ];
@@ -63,11 +64,11 @@ function validTests() {
 
     test('O move is not valid, off left bounds', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(0)(0)([
             [1, 1, 0],
             [1, 1, 0],
             [0, 0, 0]
-        ];
+        ]);
         const tetromino = [
             [-1, 0], [0, 0], [-1, 1], [0, 1]
         ];
@@ -82,11 +83,11 @@ function validTests() {
 
     test('O move is not valid - off bottom bounds', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(1)(1)([
             [0, 0, 0],
             [1, 1, 0],
             [1, 1, 0]
-        ];
+        ]);
         const tetromino = [
             [0, 2], [1, 2], [0, 3], [1, 3]
         ];
@@ -101,7 +102,7 @@ function validTests() {
 
     test('T move is valid', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(0)(0)([
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
@@ -110,7 +111,7 @@ function validTests() {
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
-        ];
+        ]);
         const tetromino = [
             [2, 2], [3, 2], [4, 2], [3, 3] 
         ];
@@ -125,7 +126,7 @@ function validTests() {
 
     test('I move is not valid', () => {
         // given
-        const matrix = [
+        const matrix = applyMatrix(0)(0)([
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
@@ -134,7 +135,7 @@ function validTests() {
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0],
-        ];
+        ]);
         const tetromino = [
             [4, 4], [4, 5], [4, 6], [4, 7]
         ];

@@ -1,4 +1,4 @@
-import { x, y, activeTetromino, LANDED } from "/src/modules/utils.mjs";
+import { x, y, activeTetromino, applyTetromino, LANDED } from "/src/modules/utils.mjs";
 
 // coordinate-system: origin is at upper left, x is horizontal, y is vertical
 // codes: 0: empty, I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7
@@ -6,43 +6,47 @@ import { x, y, activeTetromino, LANDED } from "/src/modules/utils.mjs";
 const simulateMove = (tetromino, dx, dy) =>
     tetromino.map(block => [x(block) + dx, y(block) + dy]);
 
-const isValidMove = (model, tetromino) => tetromino.every(block =>
-    y(block) < model.length && x(block) < model[0].length && model[y(block)][x(block)] < LANDED);
+const isValidMove = (model, tetromino) => 
+    tetromino.length !== 0 && tetromino.every(block =>
+    y(block) < model.m.length && x(block) < model.m[0].length && model.m[y(block)][x(block)] < LANDED);
 
-const clear = model => model.map(row => row.map(cell => cell < LANDED ? 0 : cell));
+const _hasCollisionWithButtom = (model, tetromino) => 
+    tetromino.some(block => 
+        y(block) + 1 >= model.m.length || model.m[y(block) + 1][x(block)] > LANDED);
 
-const type = model => model.flat().find(e => e > 0 && e < LANDED) || 0;
+const _mark = model =>
+    ({...model, m: model.m.map(row => 
+        row.map(cell => 
+            (cell > 0 && cell < LANDED ? cell + LANDED : cell)))});
 
-const applyTetromino = (tetromino, model) => tetromino.reduce((acc, block) => {
-    acc[y(block)][x(block)] = type(model);
-    return acc;
-}, clear(model));
+const updatePosition = model => dx => dy => 
+    ({ ...model, x: model.x + dx, y: model.y + dy});
 
-const hasCollisionWithButtom = (model, tetromino) => 
-    tetromino.some(block => y(block) + 1 >= model.length || model[y(block) + 1][x(block)] > LANDED);
-
-const mark = model =>
-    model.map(row => row.map(cell => (cell > 0 && cell < LANDED ? cell + LANDED : cell)));
-
-const doMove = (model, dx, dy) => {
+const _doMove = (model, dx, dy) => {
     const active = activeTetromino(model);
     const simulated = simulateMove(active, dx, dy);
-    const current = isValidMove(model, simulated) ? simulated : active;
-    const newModel = applyTetromino(current, model);
-    return hasCollisionWithButtom(newModel, current) ? mark(newModel) : newModel;
+    const isValid = isValidMove(model, simulated);
+    const current = isValid ? simulated : active;
+    const newModel = applyTetromino(current, isValid ? updatePosition(model)(dx)(dy) : model);
+    return _hasCollisionWithButtom(newModel, current) ?_mark(newModel) : newModel;
 }
 
 // moves
-const move = model => doMove(model,  0, 1);
-const left = model => doMove(model, -1, 0);
-const right = model => doMove(model, 1, 0);
+const move = model => _doMove(model,  0, 1);
+const left = model => _doMove(model, -1, 0);
+const right = model => _doMove(model, 1, 0);
 
-// equals
+// equality
 const equals = (m1, m2) =>
+    m1.x === m2.x &&
+    m1.y === m2.y &&
+    equalsMatrix(m1.m, m2.m);
+
+const equalsMatrix = (m1, m2) =>
     m1.length === m2.length &&
     m1.every((row, i) =>
         row.length === m2[i].length &&
         row.every((cell, j) => cell === m2[i][j])
     );
 
-export { simulateMove, isValidMove, applyTetromino, move, left, right, equals, type };
+export { move, left, right, equals, equalsMatrix, simulateMove, isValidMove };
