@@ -1,7 +1,11 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
 import { rotateCW, rotateCCW } from "/src/modules/rotation.mjs";
-import { equals } from "/src/modules/logic.mjs";
+import { equalsPos, equalsMatrix } from "/src/modules/logic.mjs";
 import { applyMatrix } from "/src/modules/utils.mjs";
+
+
+const equals = (m1, m2) => 
+    equalsPos(m1, m2) && equalsMatrix(m1.m, m2.m)
 
 function rotationTest() {
     const ROTATION = 'Basic rotation tests';

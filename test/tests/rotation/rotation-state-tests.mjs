@@ -7,7 +7,7 @@ import { applyMatrix2, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STAT
 function rotationStateTest() {
     const ROTATION_STATE = 'Rotation state tests';
 
-    test('T, 90 CW, O->R: R', () => {
+    test('T, 1 x 90 CW, O->R: R', () => {
         // given
         const m1 = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(1)(0)([
             [0, 0, 3, 0, 0, 0],
@@ -136,7 +136,7 @@ function rotationStateTest() {
             [0, 0, 0, 0, 0, 0],
         ]);
 
-        const m2 = applyMatrix2(SPAWN_STATE)(LEFT_STATE)(1)(0)([
+        const m2 = applyMatrix2(LEFT_STATE)(SPAWN_STATE)(1)(0)([
             [0, 0, 3, 0, 0, 0],
             [0, 3, 3, 0, 0, 0],
             [0, 0, 3, 0, 0, 0],
