@@ -1,4 +1,8 @@
 const LANDED = 10;
+const SPAWN_STATE = 'O';
+const RIGHT_STATE = 'R';
+const LEFT_STATE = 'L';
+const TWO_SUCCESSIVE_STATE = '2';
 
 const x = list => list[0];
 const y = list => list[list.length - 1];
@@ -19,8 +23,11 @@ const applyTetromino = (tetromino, model) => ({
     }, _clearTetromino(model).m)
 })
 
+const applyMatrix2 = current => previous => x => y => matrix =>
+    ({ m: matrix, c: current, p: previous, x: x, y: y })
+
 const applyMatrix = x => y => matrix =>
-    ({ m: matrix, x: x, y: y })
+    applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(x)(y)(matrix)
 
 const applyMatrix0 = matrix =>
     applyMatrix(0)(0)(matrix)
@@ -28,4 +35,5 @@ const applyMatrix0 = matrix =>
 const activeTetromino = model =>
     model.m.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
 
-export { x, y, activeTetromino, LANDED, applyMatrix0, applyMatrix, type, applyTetromino };
+export { x, y, activeTetromino, LANDED, applyMatrix0, applyMatrix, applyMatrix2, type, applyTetromino, 
+         SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE };

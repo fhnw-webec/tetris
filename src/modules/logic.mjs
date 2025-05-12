@@ -38,6 +38,8 @@ const right = model => _doMove(model, 1, 0);
 
 // equality
 const equals = (m1, m2) =>
+    m1.c === m2.c &&
+    m1.p === m2.p &&
     m1.x === m2.x &&
     m1.y === m2.y &&
     equalsMatrix(m1.m, m2.m);
