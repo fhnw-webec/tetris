@@ -10,14 +10,14 @@ const c90 = px => py => block =>
 const cc90 = px => py => block =>
     [Math.round(y(block) - py + px), Math.round(-x(block) + px + py)]
 
-const _rotate = (model, rotationFn) => 
-    applyTetromino(activeTetromino(model).map(rotationFn), model);
-
 const _pivot = symbol => 
     PIVOTS.hasOwnProperty(symbol) ? PIVOTS[symbol] : ALL_PIVOT_EXCEPT_I_O;
 
 const _applyPivot = rotateFn => x => y => pivot =>
     rotateFn(x + pivot)(y + pivot)
+
+const _rotate = (model, rotationFn) => 
+    applyTetromino(activeTetromino(model).map(rotationFn), model);
 
 const rotateCW  = (model) => 
     _rotate(cwStateChange(model), _applyPivot(c90)(model.x)(model.y)(_pivot(type(model))))
