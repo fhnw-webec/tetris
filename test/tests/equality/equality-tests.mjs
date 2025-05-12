@@ -1,6 +1,7 @@
+import { RIGHT_STATE } from "../../../src/modules/utils.mjs";
 import { test, assert } from "../../lib/unit-test.mjs"
 import { equals } from "/src/modules/logic.mjs";
-import { applyMatrix0, applyMatrix } from "/src/modules/utils.mjs";
+import { applyMatrix0, applyMatrix, applyMatrix2, SPAWN_STATE, LEFT_STATE } from "/src/modules/utils.mjs";
 
 function equalityTest() {
     const EQUALITY = 'Equality of models';
@@ -103,6 +104,28 @@ function equalityTest() {
         ]);
 
         const m2 = applyMatrix(2)(2)([
+            [0, 1, 0],
+            [0, 1, 0],
+            [0, 1, 0],
+        ]);
+
+        // when
+        const isSame = equals(m1, m2);
+
+        // then
+        assert(!isSame, "x and y not equal, must be false");
+
+    }, EQUALITY);
+
+    test('different c, p values', () => {
+        // given
+        const m1 = applyMatrix2(SPAWN_STATE)(LEFT_STATE)(2)(1)([
+            [0, 1, 0],
+            [0, 1, 0],
+            [0, 1, 0],
+        ]);
+
+        const m2 = applyMatrix2(SPAWN_STATE)(RIGHT_STATE)(2)(2)([
             [0, 1, 0],
             [0, 1, 0],
             [0, 1, 0],
