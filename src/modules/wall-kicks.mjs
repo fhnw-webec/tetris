@@ -42,10 +42,9 @@ const cwStateChange = model => _rotate(model)(1)
 
 const ccwStateChange = model => _rotate(model)(-1)
 
-const kicks = rotateFn => x => y => c => pivot => {
-    console.log(_next(c), PIVOT_TO_KICK[pivot][`${c}->${_next(c)}`])
-    return PIVOT_TO_KICK[pivot][`${c}->${_next(c)}`].map(kick => 
-        rotateFn(x + x(kick) + pivot)(y + y(kick) + pivot));
+const kickFunctions = model => rotateFn => direction => pivot => {
+    return PIVOT_TO_KICK[pivot][`${model.c}->${_next(model.c)(direction)}`].map(kick => 
+        rotateFn(model.x + x(kick) + pivot)(model.y + y(kick) + pivot));
     }
 
-export { cwStateChange, ccwStateChange };
+export { cwStateChange, ccwStateChange, kickFunctions };

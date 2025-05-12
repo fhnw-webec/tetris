@@ -13,16 +13,19 @@ const _cc90 = px => py => block =>
 const _pivot = symbol => 
     PIVOTS.hasOwnProperty(symbol) ? PIVOTS[symbol] : ALL_PIVOT_EXCEPT_I_O;
 
-const _applyPivot = rotateFn => x => y => pivot =>
-    rotateFn(x + pivot)(y + pivot)
+const _applyPivot = model => rotationFn => pivot =>
+    rotationFn(model.x + pivot)(model.y + pivot)
 
-const _rotate = (model, rotationFn) => 
-    applyTetromino(activeTetromino(model).map(rotationFn), model);
+const _rotate = model => rotationFn => stateChangeFn =>
+    // try all possible kicks and choose the first one, which is valid
+    // if no kick (incuding [0, 0] -> basic rotation) is valid, do nothing
+    // the position in the model needs a update according to the kick
+    applyTetromino(activeTetromino(model).map(rotationFn), stateChangeFn(model));
 
-const rotateCW  = (model) => 
-    _rotate(cwStateChange(model), _applyPivot(_c90)(model.x)(model.y)(_pivot(type(model))))
+const rotateCW = model => 
+    _rotate(model)(_applyPivot(model)(_c90)(_pivot(type(model))))(cwStateChange)
 
-const rotateCCW = (model) => 
-    _rotate(ccwStateChange(model), _applyPivot(_cc90)(model.x)(model.y)(_pivot(type(model))))
+const rotateCCW = model => 
+    _rotate(model)(_applyPivot(model)(_cc90)(_pivot(type(model))))(ccwStateChange)
 
 export { rotateCW, rotateCCW };
