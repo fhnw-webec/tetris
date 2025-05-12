@@ -7,6 +7,7 @@ import { validTests } from "./tests/move/valid-tests.mjs";
 import { applyTests } from "./tests/move/apply-tests.mjs";
 import { rotationTest } from "./tests/rotation/rotation-tests.mjs";
 import { rotationStateTest } from "./tests/rotation/rotation-state-tests.mjs";
+import { wallKickTest } from "./tests/rotation/wall-kick-tests.mjs";
 import { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, 
          TMoveTests, ZMoveTests, ZMoveTestsNotEmpty, ZTIMovesNonEmpty } from "./tests/move/move-tests.mjs";
 
@@ -37,3 +38,6 @@ applyTests();
 // rotation
 rotationTest();
 rotationStateTest();
+
+// wall kicks
+wallKickTest();
