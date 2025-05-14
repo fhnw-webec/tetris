@@ -1,14 +1,10 @@
-import { x, y, activeTetromino, applyTetromino, LANDED } from "/src/modules/utils.mjs";
+import { x, y, activeTetromino, applyTetromino, isValidMove, LANDED } from "/src/modules/utils.mjs";
 
 // coordinate-system: origin is at upper left, x is horizontal, y is vertical
 // codes: 0: empty, I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7
 
 const simulateMove = (tetromino, dx, dy) =>
     tetromino.map(block => [x(block) + dx, y(block) + dy]);
-
-const isValidMove = (model, tetromino) => 
-    tetromino.length !== 0 && tetromino.every(block =>
-    y(block) < model.m.length && x(block) < model.m[0].length && model.m[y(block)][x(block)] < LANDED);
 
 const _hasCollisionWithButtom = (model, tetromino) => 
     tetromino.some(block => 
@@ -25,7 +21,7 @@ const updatePosition = model => dx => dy =>
 const _doMove = (model, dx, dy) => {
     const active = activeTetromino(model);
     const simulated = simulateMove(active, dx, dy);
-    const isValid = isValidMove(model, simulated);
+    const isValid = isValidMove(model)(simulated);
     const current = isValid ? simulated : active;
     const newModel = applyTetromino(current, isValid ? updatePosition(model)(dx)(dy) : model);
     return _hasCollisionWithButtom(newModel, current) ?_mark(newModel) : newModel;
@@ -58,4 +54,4 @@ const equalsMatrix = (m1, m2) =>
             cell === m2[i][j])
     );
 
-export { move, left, right, equals, equalsPos, equalsState, equalsMatrix, simulateMove, isValidMove };
+export { move, left, right, equals, equalsPos, equalsState, equalsMatrix, simulateMove };

@@ -1,6 +1,5 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { isValidMove } from "../../../src/modules/logic.mjs";
-import { applyMatrix } from "/src/modules/utils.mjs";
+import { applyMatrix, isValidMove } from "/src/modules/utils.mjs";
 
 function validTests() {
     const CAT = 'Tests if moves are valid';
@@ -17,7 +16,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(result, "Not top left O tetromino");
@@ -36,7 +35,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(result, "Not bottom O tetromino");
@@ -55,7 +54,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(!result, "Not a valid move");
@@ -74,7 +73,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(!result, "Not a valid move");
@@ -93,7 +92,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(!result, "Not a valid move");
@@ -117,7 +116,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(result, "Valid move");
@@ -141,7 +140,7 @@ function validTests() {
         ];
 
         // when
-        const result = isValidMove(matrix, tetromino);
+        const result = isValidMove(matrix)(tetromino);
 
         // then
         assert(!result, "Not a valid move");
