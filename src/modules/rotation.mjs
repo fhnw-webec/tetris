@@ -1,4 +1,4 @@
-import { x, y, activeTetromino, type, applyTetromino } from '/src/modules/utils.mjs';
+import { x, y, first, identity, activeTetromino, type, applyTetromino } from '/src/modules/utils.mjs';
 import { cwStateChange, ccwStateChange } from '/src/modules/wall-kicks.mjs';
 
 const PIVOTS = { 1: 1.5, 2: 0.5  } // 1: I, 2: O
@@ -12,6 +12,13 @@ const _cc90 = px => py => block =>
 
 const _pivot = symbol => 
     PIVOTS.hasOwnProperty(symbol) ? PIVOTS[symbol] : ALL_PIVOT_EXCEPT_I_O;
+
+const selectFirst = fns => predicate => 
+    first(fns.filter(predicate)) ?? identity;
+
+const createRotationFns = model => rotationFn => pivot => kicks =>
+    kicks.map(kick => 
+        rotationFn(model.x + pivot + x(kick))(model.y + pivot + y(kick)))
 
 const _applyPivot = model => rotationFn => pivot =>
     rotationFn(model.x + pivot)(model.y + pivot)
@@ -28,4 +35,4 @@ const rotateCW = model =>
 const rotateCCW = model => 
     _rotate(model)(_applyPivot(model)(_cc90)(_pivot(type(model))))(ccwStateChange)
 
-export { rotateCW, rotateCCW };
+export { rotateCW, rotateCCW, selectFirst, createRotationFns };

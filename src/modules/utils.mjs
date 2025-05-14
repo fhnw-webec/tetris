@@ -7,6 +7,12 @@ const TWO_SUCCESSIVE_STATE = '2';
 const x = list => list[0];
 const y = list => list[list.length - 1];
 
+const first = ls => ls.length > 0 ? ls[0] : null;
+
+const nth = ls => n => (n + 1) <= ls.length ? ls[n] : null;
+
+const identity = _ => _;
+
 const type = model => 
     model.m.flat().find(e => e > 0 && e < LANDED) || 0;
 
@@ -35,5 +41,5 @@ const applyMatrix0 = matrix =>
 const activeTetromino = model =>
     model.m.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
 
-export { x, y, activeTetromino, LANDED, applyMatrix0, applyMatrix, applyMatrix2, type, applyTetromino, 
-         SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE };
+export { x, y, first, nth, activeTetromino, LANDED, applyMatrix0, applyMatrix, applyMatrix2, type, applyTetromino, 
+    identity, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE };
