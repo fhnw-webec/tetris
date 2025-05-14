@@ -62,7 +62,6 @@ function wallKickTest() {
 
         // when
         const result = createRotationFns(model)(rotationFn)(pivot)(kicks);
-        console.log(nth([2, 1])(1))
         
         // then
         assert(result.length === 2, 'Length should be 2'); // [fn1, fn2]

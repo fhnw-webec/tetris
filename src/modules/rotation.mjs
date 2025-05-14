@@ -1,4 +1,4 @@
-import { x, y, first, identity, activeTetromino, type, applyTetromino } from '/src/modules/utils.mjs';
+import { x, y, first, identity, activeTetromino, type, applyTetromino, isValidMove } from '/src/modules/utils.mjs';
 import { cwStateChange, ccwStateChange } from '/src/modules/wall-kicks.mjs';
 
 const PIVOTS = { 1: 1.5, 2: 0.5  } // 1: I, 2: O
@@ -14,25 +14,26 @@ const _pivot = symbol =>
     PIVOTS.hasOwnProperty(symbol) ? PIVOTS[symbol] : ALL_PIVOT_EXCEPT_I_O;
 
 const selectFirst = fns => predicate => 
-    first(fns.filter(predicate)) ?? identity;
+    first(fns.filter(predicate)) ?? identity;  // 
 
 const createRotationFns = model => rotationFn => pivot => kicks =>
     kicks.map(kick => 
         rotationFn(model.x + pivot + x(kick))(model.y + pivot + y(kick)))
 
-const _applyPivot = model => rotationFn => pivot =>
-    rotationFn(model.x + pivot)(model.y + pivot)
-
-const _rotate = model => rotationFn => stateChangeFn =>
-    // try all possible kicks and choose the first one, which is valid
-    // if no kick (incuding [0, 0] -> basic rotation) is valid, do nothing
-    // the position in the model needs a update according to the kick
-    applyTetromino(activeTetromino(model).map(rotationFn), stateChangeFn(model));
+const _rotate = model => rotationFn => stateChangeFn => {
+    const kicks = [[0, 0], [1, 1]]; // 
+    const fns = createRotationFns(model)(rotationFn)(_pivot(type(model)))(kicks);
+    const rfn = selectFirst(fns)(fn => isValidMove(model)(activeTetromino(model).map(fn)));
+    if(rfn === identity) {
+        return model;
+    }
+    return applyTetromino(activeTetromino(model).map(rfn), stateChangeFn(model));
+}
 
 const rotateCW = model => 
-    _rotate(model)(_applyPivot(model)(_c90)(_pivot(type(model))))(cwStateChange)
+    _rotate(model)(_c90)(cwStateChange)
 
 const rotateCCW = model => 
-    _rotate(model)(_applyPivot(model)(_cc90)(_pivot(type(model))))(ccwStateChange)
+    _rotate(model)(_cc90)(ccwStateChange)
 
 export { rotateCW, rotateCCW, selectFirst, createRotationFns };
