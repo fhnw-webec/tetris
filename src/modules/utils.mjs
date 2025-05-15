@@ -25,8 +25,17 @@ const isValidMove = model => tetromino =>
     tetromino.length !== 0 && tetromino.every(block =>
     y(block) < model.m.length && x(block) < model.m[0].length && model.m[y(block)][x(block)] < LANDED);
 
-const applyTetromino = (tetromino, model) => ({
+const hasCollisionWithButtom = (model) => (tetromino) => 
+    tetromino.some(block => 
+        y(block) + 1 >= model.m.length || model.m[y(block) + 1][x(block)] > LANDED);
+
+const applyTetromino = (tetromino, model) => 
+    applyTetromino(tetromino, model)([0, 0])
+
+const applyTetromino2 = (tetromino, model) => kick => ({
     ...model,
+    x: model.x + x(kick),
+    y: model.y + y(kick),
     m: tetromino.reduce((acc, block) => {
         acc[y(block)][x(block)] = type(model);
         return acc;
@@ -46,4 +55,5 @@ const activeTetromino = model =>
     model.m.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
 
 export { x, y, first, nth, activeTetromino, LANDED, applyMatrix0, applyMatrix, applyMatrix2, type, applyTetromino, 
-    identity, isValidMove, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE };
+    identity, isValidMove, hasCollisionWithButtom, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE,
+    applyTetromino2 };

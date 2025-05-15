@@ -106,7 +106,7 @@ function wallKickTest() {
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
         ]);
 
-        const m2 = applyMatrix2(RIGHT_STATE)(SPAWN_STATE)(4)(4)([
+        const m2 = applyMatrix2(LEFT_STATE)(SPAWN_STATE)(4)(4)([
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0, 11, 11, 11,  0,  0],
