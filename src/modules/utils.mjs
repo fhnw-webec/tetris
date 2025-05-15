@@ -30,7 +30,7 @@ const hasCollisionWithButtom = (model) => (tetromino) =>
         y(block) + 1 >= model.m.length || model.m[y(block) + 1][x(block)] > LANDED);
 
 const applyTetromino = (tetromino, model) => 
-    applyTetromino(tetromino, model)([0, 0])
+    applyTetromino2(tetromino, model)([0, 0])
 
 const applyTetromino2 = (tetromino, model) => kick => ({
     ...model,

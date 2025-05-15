@@ -1,5 +1,3 @@
-import { x, y } from "/src/modules/utils.mjs";
-
 const STATES = ['O', 'R', '2', 'L'];
 
 const I_WALL_KICK_DATA = {
@@ -26,14 +24,13 @@ const OTHER_WALL_KICK_DATA = {
 
 const PIVOT_TO_KICK = {
     1: OTHER_WALL_KICK_DATA,
-    0.5: {  }, // O
     1.5: I_WALL_KICK_DATA
 };
 
-const index = symbol => STATES.indexOf(symbol);
+const _index = symbol => STATES.indexOf(symbol);
 
 const _next = c => direction =>
-    STATES[(index(c) + direction + STATES.length) % STATES.length];
+    STATES[(_index(c) + direction + STATES.length) % STATES.length];
 
 const _rotate = model => direction =>
     ({ ...model, p: model.c, c: _next(model.c)(direction) })
@@ -42,9 +39,10 @@ const cwStateChange = model => _rotate(model)(1)
 
 const ccwStateChange = model => _rotate(model)(-1)
 
-const kickFunctions = model => rotateFn => direction => pivot => {
-    return PIVOT_TO_KICK[pivot][`${model.c}->${_next(model.c)(direction)}`].map(kick => 
-        rotateFn(model.x + x(kick) + pivot)(model.y + y(kick) + pivot));
-    }
+const kickPositions = pivot => model => direction => {
+    const nextState = _next(model.c)(direction);
+    const key = `${model.c}->${nextState}`;
+    return PIVOT_TO_KICK[pivot] ? PIVOT_TO_KICK[pivot][key] : [[0, 0]];
+}
 
-export { cwStateChange, ccwStateChange, kickFunctions };
+export { cwStateChange, ccwStateChange, kickPositions };
