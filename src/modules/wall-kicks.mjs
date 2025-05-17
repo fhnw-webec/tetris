@@ -34,7 +34,7 @@ const _next = c => direction =>
 
 const _rotate = model => direction =>
     ({ ...model, p: model.c, c: _next(model.c)(direction) })
-    
+
 const cwStateChange = model => _rotate(model)(1)
 
 const ccwStateChange = model => _rotate(model)(-1)

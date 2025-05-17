@@ -1,5 +1,5 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
-import { rotateCW, rotateCCW, selectFirst, createRotationFns } from "/src/modules/rotation.mjs";
+import { rotateCW, rotateCCW, createRotationFns } from "/src/modules/rotation.mjs";
 import { equals } from "/src/modules/logic.mjs";
 import { x, y, first, nth, applyMatrix2, identity, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
          TWO_SUCCESSIVE_STATE } from "/src/modules/utils.mjs";
@@ -7,32 +7,6 @@ import { x, y, first, nth, applyMatrix2, identity, SPAWN_STATE, RIGHT_STATE, LEF
 
 function wallKickTest() {
     const WALL_KICK = 'Wall kick tests';
-
-    test('selectFirst: no function selected -> identity', () => {
-        // given
-        const fns = [() => 1, () => 2, () => 3];
-        const predicate = f => f() === 4;
-
-        // when
-        const result = selectFirst(fns)(predicate);
-
-        // then
-        assert(result === identity, 'Should be identity');
-
-    }, WALL_KICK);
-
-    test('selectFirst: one function selected -> () => 2', () => {
-        // given
-        const fns = [() => 1, () => 2, () => 3];
-        const predicate = f => f() === 2;
-
-        // when
-        const result = selectFirst(fns)(predicate);
-
-        // then
-        assert(result() === 2, 'Should be 2');
-
-    }, WALL_KICK);
 
     test('createRotationFns: apply kick [1, 2]', () => {
         // given

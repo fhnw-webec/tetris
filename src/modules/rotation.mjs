@@ -13,9 +13,6 @@ const _cc90 = px => py => block =>
 const _pivot = symbol => 
     PIVOTS.hasOwnProperty(symbol) ? PIVOTS[symbol] : ALL_PIVOT_EXCEPT_I_O;
 
-const selectFirst = fns => predicate => 
-    first(fns.filter(predicate)) ?? identity;
-
 const createRotationFns = model => rotationFn => pivot => kicks =>
     kicks.map(kick => 
         rotationFn(model.x + pivot + x(kick))(model.y + pivot + y(kick)))
@@ -50,4 +47,4 @@ const rotateCW = model =>
 const rotateCCW = model => 
     _rotate(model)(_cc90)(ccwStateChange)(-1)
 
-export { rotateCW, rotateCCW, selectFirst, createRotationFns };
+export { rotateCW, rotateCCW, createRotationFns };
