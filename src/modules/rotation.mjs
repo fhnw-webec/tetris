@@ -1,4 +1,4 @@
-import { x, y, first, identity, activeTetromino, type, applyTetromino2, isValidMove } from '/src/modules/utils.mjs';
+import { x, y, activeTetromino, type, applyTetromino, isValidMove } from '/src/modules/utils.mjs';
 import { cwStateChange, ccwStateChange, kickPositions } from '/src/modules/wall-kicks.mjs';
 
 const PIVOTS = { 1: 1.5, 2: 0.5  } // 1: I, 2: O
@@ -34,7 +34,7 @@ const _rotate = model => rotationFn => stateChangeFn => direction => {
         const rotatedT = t.map(fn); // rotate it
         
         if(isValidMove(model)(rotatedT)) { // validate the move
-            const newModel = applyTetromino2(rotatedT, stateChangeFn(model))(kicks[index]);
+            const newModel = applyTetromino(rotatedT, stateChangeFn(model), kicks[index]);
             return newModel;
         }
     }
