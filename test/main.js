@@ -8,6 +8,7 @@ import { applyTests } from "./tests/move/apply-tests.mjs";
 import { rotationTest } from "./tests/rotation/rotation-tests.mjs";
 import { rotationStateTest } from "./tests/rotation/rotation-state-tests.mjs";
 import { wallKickTest } from "./tests/rotation/wall-kick-tests.mjs";
+import { spawnTest } from "./tests/spawn/spawn-tests.mjs";
 import { singleBlockMovesTests, twoHorizontalBlockMoveTests, OMoveTests, 
          TMoveTests, ZMoveTests, ZMoveTestsNotEmpty, ZTIMovesNonEmpty } from "./tests/move/move-tests.mjs";
 
@@ -41,3 +42,6 @@ rotationStateTest();
 
 // wall kicks
 wallKickTest();
+
+// spawn
+spawnTest();
