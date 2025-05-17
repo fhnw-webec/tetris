@@ -242,7 +242,7 @@ function wallKickTest() {
 
     }, WALL_KICK);
 
-    test('I: 2->R, Kick: non possible', () => {
+    test('I: 2->R, Kick: none possible', () => {
         // given
         const m = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
             [ 0,  0,  0,  0,  0,  0],
@@ -261,7 +261,7 @@ function wallKickTest() {
 
     }, WALL_KICK);
 
-    test('I: 2->L, Kick: non possible', () => {
+    test('I: 2->L, Kick: none possible', () => {
         // given
         const m = applyMatrix2(TWO_SUCCESSIVE_STATE)(TWO_SUCCESSIVE_STATE)(1)(0)([
             [ 0,  0,  0,  0,  0,  0],
@@ -443,7 +443,6 @@ function wallKickTest() {
 
         // when
         const result = rotateCW(m1);
-        console.log(result)
 
         // then
         assert(equals(result, m2), 'Not R->2, with (-1, 0)');
@@ -473,10 +472,211 @@ function wallKickTest() {
 
         // when
         const result = rotateCW(m1);
-        console.log(result)
 
         // then
         assert(equals(result, m2), 'Not R->2, with (-1, 0)');
+
+    }, WALL_KICK);
+
+    test('S: R->2, Kick: (0, 0)', () => {
+        // given
+        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(0)([
+            [ 0,  0,  6,  0,  0,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0,  0,  0,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+
+        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0,  6,  6,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+        // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
+
+        // when
+        const result = rotateCW(m1);
+
+        // then
+        assert(equals(result, m2), 'Not R->2, with (0, 0)');
+
+    }, WALL_KICK);
+
+    test('S: R->2, Kick: (1, 0)', () => {
+        // given
+        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(0)([
+            [ 0,  0,  6,  0,  0,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0, 11,  0,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+
+        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(0)([
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  6,  6,  0],
+            [ 0, 11,  6,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+        // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
+
+        // when
+        const result = rotateCW(m1);
+
+        // then
+        assert(equals(result, m2), 'Not R->2, with (1, 0)');
+
+    }, WALL_KICK);
+
+    test('S: R->2, Kick: (1, 1)', () => {
+        // given
+        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(0)([
+            [ 0,  0,  6,  0,  0,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0, 11, 11,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+
+        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(1)([
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0, 11, 11,  6,  6,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+        // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
+
+        // when
+        const result = rotateCW(m1);
+
+        // then
+        assert(equals(result, m2), 'Not R->2, with (1, 1)');
+
+    }, WALL_KICK);
+
+    test('S: R->2, Kick: (0, -2)', () => {
+        // given
+        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(1)([
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  6,  0,  0,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0, 11, 11,  6,  0,  0],
+            [ 0,  0,  0, 11,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+
+        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(-1)([
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0,  6,  6,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0, 11, 11,  0,  0,  0],
+            [ 0,  0,  0, 11,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+        // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
+
+        // when
+        const result = rotateCW(m1);
+
+        // then
+        assert(equals(result, m2), 'Not R->2, with (0, -2)');
+
+    }, WALL_KICK);
+
+    test('S: R->2, Kick: (1, -2)', () => {
+        // given
+        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(1)([
+            [ 0,  0, 11,  0,  0,  0],
+            [ 0,  0,  6,  0,  0,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0, 11, 11,  6,  0,  0],
+            [ 0,  0,  0, 11,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+
+        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(-1)([
+            [ 0,  0, 11,  6,  6,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0, 11, 11,  0,  0,  0],
+            [ 0,  0,  0, 11,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+        // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
+
+        // when
+        const result = rotateCW(m1);
+
+        // then
+        assert(equals(result, m2), 'Not R->2, with (1, -2)');
+
+    }, WALL_KICK);
+
+    test('S: 2->R, Kick: (0, 2)', () => {
+        // given
+        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(-1)([
+            [ 0,  0, 11,  6,  6,  0],
+            [ 0,  0,  6,  6,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0, 11, 11,  0,  0,  0],
+            [ 0,  0,  0, 11,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+
+        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(2)(1)([
+            [ 0,  0, 11,  0,  0,  0],
+            [ 0,  0,  0,  6,  0,  0],
+            [ 0,  0,  0,  6,  6,  0],
+            [ 0, 11, 11,  0,  6,  0],
+            [ 0,  0,  0, 11,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+        // S: 2->R: [[0, 0], [-1, 0], [-1, -1], [0, 2], [-1, 2]]
+
+        // when
+        const result = rotateCCW(m1);
+
+        // then
+        assert(equals(result, m2), 'Not R->2, with (0, 2)');
+
+    }, WALL_KICK);
+
+    test('S: L->2, Kick: none possible', () => {
+        // given
+        const m = applyMatrix2(LEFT_STATE)(LEFT_STATE)(4)(1)([
+            [ 0,  0,  0,  0, 11, 11],
+            [ 0,  0,  0, 11,  6, 11],
+            [ 0,  0,  0, 11,  6,  6],
+            [ 0,  0,  0, 11, 11,  6],
+            [ 0,  0,  0,  0, 11, 11],
+            [ 0,  0,  0,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0],
+        ]);
+    
+        // S: L->2: [[[0, 0], [-1, 0], [-1, 1], [0, -2], [-1, -2]]
+
+        // when
+        const result = rotateCCW(m);
+
+        // then
+        assert(equals(result, m), 'Not R->2, with (0, 2)');
 
     }, WALL_KICK);
 }
