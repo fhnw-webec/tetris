@@ -19,7 +19,7 @@ const _doMove = (model, dx, dy) => {
     const simulated = simulateMove(active, dx, dy);
     const isValid = isValidMove(model)(simulated);
     const current = isValid ? simulated : active;
-    const newModel = applyTetromino(current, isValid ? updatePosition(model)(dx)(dy) : model);
+    const newModel = applyTetromino(current)(isValid ? updatePosition(model)(dx)(dy) : model);
     return hasCollisionWithButtom(newModel)(current) ?_mark(newModel) : newModel;
 }
 

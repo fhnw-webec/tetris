@@ -22,7 +22,7 @@ function applyTests() {
         ]);
 
         // when
-        const result = applyTetromino(tetromino, m1);
+        const result = applyTetromino(tetromino)(m1);
 
         // then
         assert(equals(result, m2), "tetromino is not at the correct position");
@@ -46,7 +46,7 @@ function applyTests() {
         ]);
 
         // when
-        const result = applyTetromino(tetromino, m1);
+        const result = applyTetromino(tetromino)(m1);
 
         // then
         assert(equals(result, m2), "tetromino is not at the correct position");
@@ -70,7 +70,7 @@ function applyTests() {
         ]);
 
         // when
-        const result = applyTetromino(tetromino, m1);
+        const result = applyTetromino(tetromino)(m1);
 
         // then
         assert(equals(result, m2), "tetromino is not at the correct position");
@@ -98,7 +98,7 @@ function applyTests() {
         ]);
 
         // when
-        const result = applyTetromino(tetromino, m1);
+        const result = applyTetromino(tetromino)(m1);
 
         // then
         assert(equals(result, m2), "tetromino is not at the correct position");
