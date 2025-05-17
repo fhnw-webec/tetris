@@ -25,11 +25,11 @@ const _apply = fn => offset => type => model =>
 const TYPE_TO_FUNCTION = Object.freeze({
   [TETROMINO_TYPE.I]: _apply(i)(-2)(TETROMINO_TYPE.I),
   [TETROMINO_TYPE.O]: _apply(o)(-1)(TETROMINO_TYPE.O),
-  [TETROMINO_TYPE.T]: _apply(t)(-1)(TETROMINO_TYPE.T),
-  [TETROMINO_TYPE.J]: _apply(j)(-1)(TETROMINO_TYPE.J),
-  [TETROMINO_TYPE.L]: _apply(l)(-1)(TETROMINO_TYPE.L),
-  [TETROMINO_TYPE.S]: _apply(s)(-1)(TETROMINO_TYPE.S),
-  [TETROMINO_TYPE.Z]: _apply(z)(-1)(TETROMINO_TYPE.Z),
+  [TETROMINO_TYPE.T]: _apply(t)(-2)(TETROMINO_TYPE.T),
+  [TETROMINO_TYPE.J]: _apply(j)(-2)(TETROMINO_TYPE.J),
+  [TETROMINO_TYPE.L]: _apply(l)(-2)(TETROMINO_TYPE.L),
+  [TETROMINO_TYPE.S]: _apply(s)(-2)(TETROMINO_TYPE.S),
+  [TETROMINO_TYPE.Z]: _apply(z)(-2)(TETROMINO_TYPE.Z),
 });
 
 const spawn = model => tetrominoType => 
