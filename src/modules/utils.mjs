@@ -5,7 +5,7 @@ const LEFT_STATE = 'L';
 const TWO_SUCCESSIVE_STATE = '2';
 
 const x = list => list[0];
-const y = list => list[list.length - 1];
+const y = list => list[list.length - 1]; // TODO, test length ===  2
 
 const first = ls => ls.length > 0 ? ls[0] : null;
 
@@ -23,7 +23,9 @@ const _clearTetromino = model =>
 
 const isValidMove = model => tetromino => 
     tetromino.length !== 0 && tetromino.every(block =>
-    y(block) < model.m.length && x(block) < model.m[0].length && model.m[y(block)][x(block)] < LANDED);
+        x(block) >= 0 && y(block) >= 0 &&
+        y(block) < model.m.length && x(block) < model.m[0].length && 
+        model.m[y(block)][x(block)] < LANDED);
 
 const hasCollisionWithButtom = (model) => (tetromino) => 
     tetromino.some(block => 
