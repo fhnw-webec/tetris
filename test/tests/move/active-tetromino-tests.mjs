@@ -1,17 +1,17 @@
 import { test, assert } from "../../lib/unit-test.mjs"
 import { equals, equalsMatrix } from "../../../src/modules/logic.mjs";
-import { activeTetromino, applyMatrix0 } from "/src/modules/utils.mjs";
+import { activeTetromino, applyMatrix } from "/src/modules/utils.mjs";
 
 function activeTetrominoTests() {
     const CAT = 'Active tetromino tests';
 
     test('O top left', () => {
         // given
-        const model =  applyMatrix0([
+        const model =  applyMatrix({ m: [
             [2, 2, 0],
             [2, 2, 0],
             [0, 0, 0]
-        ]);
+        ]});
         const tetromino = [
             [0, 0], [1, 0], [0, 1], [1, 1]
         ];
@@ -26,11 +26,11 @@ function activeTetrominoTests() {
 
     test('T top right', () => {
         // given
-        const model = applyMatrix0([
+        const model = applyMatrix({ m: [
             [0, 3, 3, 3],
             [0, 0, 3, 0],
             [0, 0, 0, 0]
-        ]);
+        ]});
         const tetromino = [
             [1, 0], [2, 0], [3, 0], [2, 1]
         ];
@@ -45,14 +45,14 @@ function activeTetrominoTests() {
 
     test('T top right, with non empty model', () => {
         // given
-        const matrix = applyMatrix0([
+        const matrix = applyMatrix({ m: [
             [0, 3, 3, 3, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 12, 12, 0, 0],
             [0, 0, 12, 12, 0, 0],
-        ]);
+        ]});
         const tetromino = [
             [1, 0], [2, 0], [3, 0], [2, 1]
         ];
@@ -67,14 +67,14 @@ function activeTetrominoTests() {
 
     test('I middle (1,4), with non empty model', () => {
         // given
-        const matrix = applyMatrix0([
+        const matrix = applyMatrix({ m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 1, 1, 1, 1, 0],
             [0, 0, 12, 12, 0, 0],
             [0, 0, 12, 12, 0, 0],
-        ]);
+        ]});
         const tetromino = [
             [1, 3], [2, 3], [3, 3], [4, 3]
         ];

@@ -7,16 +7,16 @@ function rightTests() {
 
     test('O moves in 3x3 matrix, with one right', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [1, 1, 0],
             [1, 1, 0],
             [0, 0, 0]
-        ]);
-        const m2 = applyMatrix(1)(0)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 0, m: [
             [0, 1, 1],
             [0, 1, 1],
             [0, 0, 0]
-        ]);
+        ]});
 
         // when
         const result = right(m1);
@@ -28,16 +28,16 @@ function rightTests() {
 
     test('O moves in 3x3 matrix, with 2 right, but only one possible', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [1, 1, 0],
             [1, 1, 0],
             [0, 0, 0]
-        ]);
-        const m2 = applyMatrix(1)(0)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 0, m: [
             [0, 1, 1],
             [0, 1, 1],
             [0, 0, 0]
-        ]);
+        ]});
 
         // when
         let result = right(m1);
@@ -50,16 +50,16 @@ function rightTests() {
 
     test('O moves in 3x3 matrix, with 1 right, but is already landed', () => {
         // given
-        const m1 = applyMatrix(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, m: [
             [ 0,  0,  0],
             [ 0, 11, 11],
             [ 0, 11, 11]
-        ]);
-        const m2 = applyMatrix(1)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [ 0,  0,  0],
             [ 0, 11, 11],
             [ 0, 11, 11]
-        ]);
+        ]});
 
         // when
         const result = right(m1);
@@ -71,7 +71,7 @@ function rightTests() {
 
     test('I moves in 7x14 matrix, with right and down moves, model is non empty', () => {
         // given
-        const m1 = applyMatrix(0)(4)([
+        const m1 = applyMatrix({ x: 0, y: 4, m: [
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
@@ -85,8 +85,8 @@ function rightTests() {
             [ 0,  0,  0,  0, 13,  0,  0],
             [ 0,  0,  0,  0, 13,  0,  0],
             [ 0,  0,  0,  0, 13,  0,  0],
-        ]);
-        const m2 = applyMatrix(3)(8)([
+        ]});
+        const m2 = applyMatrix({ x: 3, y: 8, m: [
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
@@ -100,7 +100,7 @@ function rightTests() {
             [ 0,  0,  0,  3, 13,  0,  0],
             [ 0,  0,  0,  3, 13,  0,  0],
             [ 0,  0,  0,  0, 13,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = right(m1);

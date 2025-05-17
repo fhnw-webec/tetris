@@ -12,23 +12,23 @@ function rotationTest() {
 
     test('T, 90 CCW, CW, CCW', () => {
         // given
-        const m1 = applyMatrix(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 0, 3, 3, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(1)([
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 3, 0, 0, 0],
             [0, 3, 3, 3, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCCW(m1);
@@ -42,23 +42,23 @@ function rotationTest() {
 
     test('J, CW, CW = 180', () => {
         // given
-        const m1 = applyMatrix(2)(1)([
+        const m1 = applyMatrix({ x: 2, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 4, 0, 0, 0],
             [0, 0, 4, 4, 4, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(2)(1)([
+        const m2 = applyMatrix({ x: 2, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 4, 4, 4, 0],
             [0, 0, 0, 0, 4, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);
@@ -71,23 +71,23 @@ function rotationTest() {
 
     test('L, CW, CW, CW = 270', () => {
         // given
-        const m1 = applyMatrix(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 5, 0, 0, 0],
             [0, 0, 5, 0, 0, 0],
             [0, 0, 5, 5, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(1)([
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 5, 0, 0],
             [0, 5, 5, 5, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);
@@ -101,23 +101,23 @@ function rotationTest() {
 
     test('S, CCW, -90', () => {
         // given
-        const m1 = applyMatrix(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 6, 0, 0, 0],
             [0, 0, 6, 6, 0, 0],
             [0, 0, 0, 6, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(1)([
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 6, 6, 0, 0],
             [0, 6, 6, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCCW(m1);
@@ -129,23 +129,23 @@ function rotationTest() {
 
     test('Z, CCW, CCW -180', () => {
         // given
-        const m1 = applyMatrix(1)(2)([
+        const m1 = applyMatrix({ x: 1, y: 2, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 7, 7, 0, 0, 0],
             [0, 0, 7, 7, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(2)([
+        const m2 = applyMatrix({ x: 1, y: 2, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 7, 7, 0, 0, 0],
             [0, 0, 7, 7, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCCW(m1);
@@ -158,23 +158,23 @@ function rotationTest() {
 
     test('I, CW = 90', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 1, 1, 1, 1, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(0)([
+        const m2 = applyMatrix({ x: 1, y: 0, m: [
             [0, 0, 0, 1, 0, 0],
             [0, 0, 0, 1, 0, 0],
             [0, 0, 0, 1, 0, 0],
             [0, 0, 0, 1, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);
@@ -186,23 +186,23 @@ function rotationTest() {
 
     test('I, CW, CW = 180', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [0, 0, 0, 0, 0, 0],
             [1, 1, 1, 1, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(0)(0)([
+        const m2 = applyMatrix({ x: 0, y: 0, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [1, 1, 1, 1, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);
@@ -215,23 +215,23 @@ function rotationTest() {
 
     test('I, CW, CW, CW = 180', () => {
         // given
-        const m1 = applyMatrix(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 1, 1, 1, 1, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(1)([
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);
@@ -245,23 +245,23 @@ function rotationTest() {
 
     test('O, CW = 90', () => {
         // given
-        const m1 = applyMatrix(1)(2)([
+        const m1 = applyMatrix({ x: 1, y: 2, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix(1)(2)([
+        const m2 = applyMatrix({ x: 1, y: 2, m: [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 2, 2, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);

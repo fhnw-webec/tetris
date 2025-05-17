@@ -41,17 +41,12 @@ const applyTetromino = (tetromino, model, kick = [0, 0], t = type(model)) => ({
     }, _clearTetromino(model).m)
 });
 
-const applyMatrix0 = matrix =>
-    applyMatrix(0)(0)(matrix)
-
-const applyMatrix = x => y => matrix =>
-    applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(x)(y)(matrix)
-
-const applyMatrix2 = current => previous => x => y => matrix =>
-    ({ m: matrix, c: current, p: previous, x: x, y: y })
+const applyMatrix = ({ x = 0, y = 0, c = SPAWN_STATE, p = SPAWN_STATE, m }) =>
+    ({ m: m, c: c, p: p, x: x, y: y })
 
 const activeTetromino = model =>
     model.m.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
 
-export { x, y, first, nth, activeTetromino, LANDED, applyMatrix0, applyMatrix, applyMatrix2, type, applyTetromino, 
-    identity, isValidMove, hasCollisionWithButtom, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE };
+export { x, y, first, nth, activeTetromino, LANDED, applyMatrix, type, applyTetromino, 
+         identity, isValidMove, hasCollisionWithButtom, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
+         TWO_SUCCESSIVE_STATE };

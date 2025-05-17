@@ -7,16 +7,16 @@ function singleBlockMovesTests() {
 
     test('Single block in 3x3 Matrix, with one move', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [0, 1, 0],
             [0, 0, 0],
             [0, 0, 0]
-        ]);
-        const m2 = applyMatrix(1)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0],
             [0, 1, 0],
             [0, 0, 0]
-        ]);
+        ]});
 
         // when
         const result = move(m1);
@@ -28,16 +28,16 @@ function singleBlockMovesTests() {
 
     test('Single block in 3x3 Matrix, with two moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [1, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [ 0, 0, 0],
             [ 0, 0, 0],
             [11, 0, 0]
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -50,16 +50,16 @@ function singleBlockMovesTests() {
 
     test('Single block in 3x3 Matrix, with ten moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [1, 0, 0],
             [0, 0, 0],
             [0, 0, 0],
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [ 0, 0, 0],
             [ 0, 0, 0],
             [11, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -78,18 +78,18 @@ function twoHorizontalBlockMoveTests() {
 
     test('Two blocks in 4x4 Matrix, with one move', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [0, 1, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
-        ]);
-        const m2 = applyMatrix(1)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         const result = move(m1);
@@ -101,18 +101,18 @@ function twoHorizontalBlockMoveTests() {
 
     test('Three blocks in 4x4 Matrix, with two moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [1, 1, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [1, 1, 1, 0],
             [0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -125,18 +125,18 @@ function twoHorizontalBlockMoveTests() {
 
     test('Three blocks in 4x4 Matrix, with ten moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [ 1,  1,  1,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(0)(3)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 3, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [11, 11, 11,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -156,18 +156,18 @@ function OMoveTests() {
 
     test('O, with one move', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [1, 1, 0, 0],
             [1, 1, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
-        ]);
-        const m2 = applyMatrix(0)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 1, m: [
             [0, 0, 0, 0],
             [1, 1, 0, 0],
             [1, 1, 0, 0],
             [0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         const result = move(m1);
@@ -179,18 +179,18 @@ function OMoveTests() {
 
     test('O, with two moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [ 1,  1,  0,  0],
             [ 1,  1,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [11, 11,  0,  0],
             [11, 11,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -203,18 +203,18 @@ function OMoveTests() {
 
     test('O, with ten moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [ 1,  1,  0,  0],
             [ 1,  1,  0,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [11, 11,  0,  0],
             [11, 11,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -233,18 +233,18 @@ function TMoveTests() {
 
     test('T, with one move', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [0, 1, 1, 1],
             [0, 0, 1, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
-        ]);
-        const m2 = applyMatrix(1)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [0, 0, 0, 0],
             [0, 1, 1, 1],
             [0, 0, 1, 0],
             [0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         const result = move(m1);
@@ -256,18 +256,18 @@ function TMoveTests() {
 
     test('T, with two moves', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [ 0,  1,  1,  1],
             [ 0,  0,  1,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(1)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 2, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0, 11, 11, 11],
             [ 0,  0, 11,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -280,18 +280,18 @@ function TMoveTests() {
 
     test('T, with ten moves', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [ 0,  1,  1,  1],
             [ 0,  0,  1,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(1)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 2, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [ 0, 11, 11, 11],
             [ 0,  0, 11,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -310,18 +310,18 @@ function ZMoveTests() {
 
     test('Z, with one move', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [2, 2, 0, 0],
             [0, 2, 2, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
-        ]);
-        const m2 = applyMatrix(0)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 1, m: [
             [0, 0, 0, 0],
             [2, 2, 0, 0],
             [0, 2, 2, 0],
             [0, 0, 0, 0],
-        ]);
+        ]});
 
         // when
         const result = move(m1);
@@ -333,18 +333,18 @@ function ZMoveTests() {
 
     test('Z, with two moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [ 2,  2,  0,  0],
             [ 0,  2,  2,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [12, 12,  0,  0],
             [ 0, 12, 12,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -357,18 +357,18 @@ function ZMoveTests() {
 
     test('Z, with ten moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [ 2,  2,  0,  0],
             [ 0,  2,  2,  0],
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(0)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 2, m: [
             [ 0,  0,  0,  0],
             [ 0,  0,  0,  0],
             [12, 12,  0,  0],
             [ 0, 12, 12,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -387,20 +387,20 @@ function ZMoveTestsNotEmpty() {
 
     test('Z, with ten moves', () => {
         // given
-        const m1 = applyMatrix(0)(0)([
+        const m1 = applyMatrix({ x: 0, y: 0, m: [
             [ 2,  2,  0,  0,  0],
             [ 0,  2,  2,  0,  0],
             [ 0,  0,  0,  0,  0],
             [11, 11, 11,  0,  0],
             [ 0, 11,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(0)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 1, m: [
             [ 0,  0,  0,  0,  0],
             [12, 12,  0,  0,  0],
             [ 0, 12, 12,  0,  0],
             [11, 11, 11,  0,  0],
             [ 0, 11,  0,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -415,20 +415,20 @@ function ZMoveTestsNotEmpty() {
 
     test('Z, with two moves, collides with T', () => {
         // given
-        const m1 = applyMatrix(2)(0)([
+        const m1 = applyMatrix({ x: 2, y: 0, m: [
             [ 0,  0,  2,  2,  0],
             [ 0,  0,  0,  2,  2],
             [ 0,  0,  0,  0,  0],
             [11, 11, 11,  0,  0],
             [ 0, 11,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(2)(2)([
+        ]});
+        const m2 = applyMatrix({ x: 2, y: 2, m: [
             [ 0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0],
             [ 0,  0, 12, 12,  0],
             [11, 11, 11, 12, 12],
             [ 0, 11,  0,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -441,20 +441,20 @@ function ZMoveTestsNotEmpty() {
 
     test('T, with three moves, collides with Z', () => {
         // given
-        const m1 = applyMatrix(2)(0)([
+        const m1 = applyMatrix({ x: 2, y: 0, m: [
             [ 0,  0,  2,  2,  0],
             [ 0,  0,  0,  2,  2],
             [ 0,  0,  0,  0,  0],
             [ 0, 11,  0,  0,  0],
             [11, 11, 11,  0,  0],
-        ]);
-        const m2 = applyMatrix(2)(3)([
+        ]});
+        const m2 = applyMatrix({ x: 2, y: 3, m: [
             [ 0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0],
             [ 0, 11, 12, 12,  0],
             [11, 11, 11, 12, 12],
-        ]);
+        ]});
 
         // when
         let result = move(m1);
@@ -473,7 +473,7 @@ function ZTIMovesNonEmpty() {
 
     test('Z, with 15 moves', () => {
         // given
-        const m1 = applyMatrix(4)(0)([
+        const m1 = applyMatrix({ x: 4, y: 0, m: [
             [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  3,  0,  0,  0,  0,  0],
@@ -494,8 +494,8 @@ function ZTIMovesNonEmpty() {
             [11, 11,  0,  0,  0,  0,  0,  0,  0,  0],
             [11, 11, 12, 12,  0,  0,  0,  0,  0,  0],
             [11, 11, 11, 12, 12,  0,  0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(4)(15)([
+        ]});
+        const m2 = applyMatrix({ x: 4, y: 15, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
@@ -516,7 +516,7 @@ function ZTIMovesNonEmpty() {
             [11, 11,  0,  0, 13,  0,  0,  0,  0,  0],
             [11, 11, 12, 12, 13,  0,  0,  0,  0,  0],
             [11, 11, 11, 12, 12,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = move(m1);

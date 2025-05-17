@@ -7,16 +7,17 @@ function oneLeftTest() {
 
     test('O moves in 3x3 matrix, with one left', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
+            
             [0, 2, 2],
             [0, 2, 2],
             [0, 0, 0]
-        ]);
-        const m2 = applyMatrix(0)(0)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 0, m: [
             [2, 2, 0],
             [2, 2, 0],
             [0, 0, 0]
-        ]);
+        ]});
 
         // when
         const result = left(m1);
@@ -28,16 +29,16 @@ function oneLeftTest() {
 
     test('O moves in 3x3 matrix, with 2 left, but only one possible', () => {
         // given
-        const m1 = applyMatrix(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, m: [
             [0, 2, 2],
             [0, 2, 2],
             [0, 0, 0]
-        ]);
-        const m2 = applyMatrix(0)(0)([
+        ]});
+        const m2 = applyMatrix({ x: 0, y: 0, m: [
             [2, 2, 0],
             [2, 2, 0],
             [0, 0, 0]
-        ]);
+        ]});
 
         // when
         let result = left(m1);
@@ -50,16 +51,16 @@ function oneLeftTest() {
 
     test('O moves in 3x3 matrix, with 1 left, but is already landed', () => {
         // given
-        const m1 = applyMatrix(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, m: [
             [ 0,  0,  0],
             [ 0, 12, 12],
             [ 0, 12, 12]
-        ]);
-        const m2 = applyMatrix(1)(1)([
+        ]});
+        const m2 = applyMatrix({ x: 1, y: 1, m: [
             [ 0,  0,  0],
             [ 0, 12, 12],
             [ 0, 12, 12]
-        ]);
+        ]});
 
         // when
         const result = left(m1);
@@ -71,7 +72,7 @@ function oneLeftTest() {
 
     test('I moves in 7x14 matrix, with left and down moves, model is non empty', () => {
         // given
-        const m1 = applyMatrix(6)(5)([
+        const m1 = applyMatrix({ x: 6, y: 5, m: [
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
@@ -85,8 +86,8 @@ function oneLeftTest() {
             [ 0,  0, 13,  0,  0,  0,  0],
             [ 0,  0, 13,  0,  0,  0,  0],
             [ 0,  0, 13,  0,  0,  0,  0],
-        ]);
-        const m2 = applyMatrix(4)(8)([
+        ]});
+        const m2 = applyMatrix({ x: 4, y: 8, m: [
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0],
@@ -100,7 +101,7 @@ function oneLeftTest() {
             [ 0,  0, 13,  0, 13,  0,  0],
             [ 0,  0, 13,  0, 13,  0,  0],
             [ 0,  0, 13,  0, 13,  0,  0],
-        ]);
+        ]});
 
         // when
         let result = left(m1);

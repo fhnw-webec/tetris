@@ -1,7 +1,7 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
 import { rotateCW, rotateCCW, createRotationFns } from "/src/modules/rotation.mjs";
 import { equals } from "/src/modules/logic.mjs";
-import { x, y, first, nth, applyMatrix2, identity, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
+import { x, y, first, nth, applyMatrix, identity, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
          TWO_SUCCESSIVE_STATE } from "/src/modules/utils.mjs";
 
 
@@ -11,7 +11,7 @@ function wallKickTest() {
     test('createRotationFns: apply kick [1, 2]', () => {
         // given
         // createRotationFns = model => rotationFn => pivot => kicks =>
-        const model = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(3)(2)([]);
+        const model = applyMatrix({ x: 3, y: 2, c: SPAWN_STATE, p: SPAWN_STATE, m: []}); 
         const pivot = 3;
         const rotationFn = px => py => block => [px, py]
         const kicks = [[1, 2]];
@@ -28,7 +28,7 @@ function wallKickTest() {
 
     test('createRotationFns: apply kick [[1, 2], [3, 4]]', () => {
         // given
-        const model = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(0)(1)([]);
+        const model = applyMatrix({ x: 0, y: 1, c: SPAWN_STATE, p: SPAWN_STATE, m: []});
         const pivot = 2;
         const rotationFn = px => py => block => [px, py]
         const kicks = [[1, 2], [3, 4]];
@@ -47,7 +47,7 @@ function wallKickTest() {
 
     test('SRS, example, J: O->L, No possible kick found', () => {
         // given
-        const m1 = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(3)(2)([
+        const m1 = applyMatrix({ x: 3, y: 2, c: SPAWN_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  4,  0, 11, 11, 11,  0,  0],
@@ -56,7 +56,7 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
         // when
         const result = rotateCCW(m1);
@@ -68,7 +68,7 @@ function wallKickTest() {
 
     test('SRS, example, J: O->L, Kick: (1, 2)', () => {
         // given
-        const m1 = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(3)(2)([
+        const m1 = applyMatrix({ x: 3, y: 2, c: SPAWN_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  4,  0, 11, 11, 11,  0,  0],
@@ -77,9 +77,9 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(LEFT_STATE)(SPAWN_STATE)(4)(4)([
+        const m2 = applyMatrix({ x: 4, y: 4, c: LEFT_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0, 11, 11, 11,  0,  0],
@@ -88,7 +88,7 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  4, 11, 11, 11, 11],
             [11, 11, 11, 11,  4,  4, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
         // when
         const result = rotateCCW(m1);
@@ -100,7 +100,7 @@ function wallKickTest() {
 
     test('Reverse SRS example, J: L->O, (-1, -2)', () => {
         // given
-        const m1 = applyMatrix2(LEFT_STATE)(SPAWN_STATE)(4)(4)([
+        const m1 = applyMatrix({ x: 4, y: 4, c: LEFT_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0, 11, 11, 11,  0,  0],
@@ -109,9 +109,9 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  4, 11, 11, 11, 11],
             [11, 11, 11, 11,  4,  4, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(SPAWN_STATE)(LEFT_STATE)(3)(2)([
+        const m2 = applyMatrix({ x: 3, y: 2, c: SPAWN_STATE, p: LEFT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  4,  0, 11, 11, 11,  0,  0],
@@ -120,7 +120,7 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
         // when
         const result = rotateCW(m1);
@@ -133,7 +133,7 @@ function wallKickTest() {
 
     test('O: O->R, R->2, Kick: [0, 0]', () => {
         // given
-        const m1 = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(4)(3)([
+        const m1 = applyMatrix({ x: 4, y: 3, c: SPAWN_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11, 11, 11,  0,  0],
@@ -142,9 +142,9 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(4)(3)([
+        const m2 = applyMatrix({ x: 4, y: 3, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11,  0,  0,  0,  0],
             [ 0,  0,  0,  0, 11, 11, 11, 11,  0,  0],
@@ -153,7 +153,7 @@ function wallKickTest() {
             [11, 11,  0,  0,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11,  0,  0, 11, 11, 11, 11],
             [11, 11, 11, 11, 11,  0, 11, 11, 11, 11],
-        ]);
+        ]});
 
         // when
         let result = rotateCW(m1);
@@ -166,21 +166,21 @@ function wallKickTest() {
 
     test('T: R->2, Kick: (1, 0)', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(SPAWN_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: RIGHT_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  3,  0,  0,  0],
             [ 0, 11,  3,  3,  0,  0],
             [ 0,  0,  3,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(0)([
+        const m2 = applyMatrix({ x: 2, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0, 11,  3,  3,  3,  0],
             [ 0,  0,  0,  3,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
         // when
         const result = rotateCW(m1);
@@ -192,21 +192,21 @@ function wallKickTest() {
 
     test('Z: L->2, Kick: (1, 0)', () => {
         // given
-        const m1 = applyMatrix2(SPAWN_STATE)(SPAWN_STATE)(2)(0)([
+        const m1 = applyMatrix({ x: 2, y: 0, c: SPAWN_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  7,  7,  0,  0],
             [ 0,  0, 11,  7,  7,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(LEFT_STATE)(SPAWN_STATE)(3)(0)([
+        const m2 = applyMatrix({ x: 3, y: 0, c: LEFT_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  7,  0],
             [ 0,  0, 11,  7,  7,  0],
             [ 0,  0,  0,  7,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
         // when
         const result = rotateCCW(m1);
@@ -218,13 +218,13 @@ function wallKickTest() {
 
     test('I: 2->R, Kick: none possible', () => {
         // given
-        const m = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+        const m = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  1,  1,  1,  1,  0],
             [11, 11, 11, 11, 11, 11],
             [11, 11, 11, 11, 11, 11],
-        ]);
+        ]});
         // I: 2->R: [0, 0], [1, 0], [-2, 0], [1, 2], [-2, -1]
 
         // when
@@ -237,13 +237,13 @@ function wallKickTest() {
 
     test('I: 2->L, Kick: none possible', () => {
         // given
-        const m = applyMatrix2(TWO_SUCCESSIVE_STATE)(TWO_SUCCESSIVE_STATE)(1)(0)([
+        const m = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  1,  1,  1,  1,  0],
             [11, 11, 11, 11, 11, 11],
             [11, 11, 11, 11, 11, 11],
-        ]);
+        ]});
         // I: 2->L: [[0, 0], [2, 0], [-1, 0], [2, -1], [-1, 2]]
 
         // when
@@ -256,21 +256,21 @@ function wallKickTest() {
 
     test('I: 2->R, Kick: (0, 0)', () => {
         // given
-        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  1,  1,  1,  1,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(1)(0)([
+        const m2 = applyMatrix({ x: 1, y: 0, c: RIGHT_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [ 0,  0,  0,  1,  0,  0],
             [ 0,  0,  0,  1,  0,  0],
             [ 0,  0,  0,  1,  0,  0],
             [ 0,  0,  0,  1,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // I: 2->R: [0, 0], [1, 0], [-2, 0], [1, 2], [-2, -1]
 
         // when
@@ -284,21 +284,21 @@ function wallKickTest() {
 
     test('I: 2->R, Kick: (1, 0)', () => {
         // given
-        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  1,  1,  1,  1,  0],
             [ 0, 11, 11, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(2)(0)([
+        const m2 = applyMatrix({ x: 2, y: 0, c: RIGHT_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [ 0,  0,  0,  0,  1,  0],
             [ 0,  0,  0,  0,  1,  0],
             [ 0,  0,  0,  0,  1,  0],
             [ 0, 11, 11, 11,  1,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // I: 2->R: [0, 0], [1, 0],  [-2, 0], [1, 2],   [-2, -1]
 
         // when
@@ -311,21 +311,21 @@ function wallKickTest() {
 
     test('I: 2->R, Kick: (-2, 0)', () => {
         // given
-        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  1,  1,  1,  1,  0],
             [ 0,  0,  0, 11, 11,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(-1)(0)([
+        const m2 = applyMatrix({ x: -1, y: 0, c: RIGHT_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [ 0,  1,  0,  0,  0,  0],
             [ 0,  1,  0,  0,  0,  0],
             [ 0,  1,  0,  0,  0,  0],
             [ 0,  1,  0, 11, 11,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // I: 2->R: [0, 0], [1, 0],  [-2, 0], [1, 2],   [-2, -1]
 
         // when
@@ -338,23 +338,23 @@ function wallKickTest() {
 
     test('I: 2->R, Kick: (1, 2)', () => {
         // given
-        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [11, 11, 11,  0, 11, 11],
             [ 0,  1,  1,  1,  1,  0],
             [11, 11, 11, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(2)(2)([
+        const m2 = applyMatrix({ x: 2, y: 2, c: RIGHT_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [11, 11, 11,  0, 11, 11],
             [ 0,  0,  0,  0,  1,  0],
             [11, 11, 11, 11,  1,  0],
             [ 0,  0,  0,  0,  1,  0],
             [ 0,  0,  0,  0,  1,  0],
-        ]);
+        ]});
         // I: 2->R: [0, 0], [1, 0], [-2, 0], [1, 2],   [-2, -1]
 
         // when
@@ -367,23 +367,23 @@ function wallKickTest() {
 
     test('I: 2->R, Kick: (-2, -1)', () => {
         // given
-        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [11,  0, 11, 11,  0,  0],
             [11,  0, 11, 11,  0,  0],
             [11,  0, 11, 11, 11, 11],
             [11,  1,  1,  1,  1,  0],
             [11, 11, 11, 11, 11, 11],
             [11,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(-1)(0)([
+        const m2 = applyMatrix({ x: -1, y: 0, c: RIGHT_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [11,  1, 11, 11,  0,  0],
             [11,  1, 11, 11,  0,  0],
             [11,  1, 11, 11, 11, 11],
             [11,  1,  0,  0,  0,  0],
             [11, 11, 11, 11, 11, 11],
             [11,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // I: 2->R: [0, 0], [1, 0], [-2, 0], [1, 2], [-2, -1]
 
         // when
@@ -396,23 +396,23 @@ function wallKickTest() {
 
     test('I: R->2, Kick: right border stuck', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(3)(1)([
+        const m1 = applyMatrix({ x: 3, y: 1, c: RIGHT_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  1],
             [ 0,  0,  0,  0,  0,  1],
             [ 0,  0,  0,  0,  0,  1],
             [ 0,  0,  0,  0,  0,  1],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(1)([
+        const m2 = applyMatrix({ x: 2, y: 1, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  1,  1,  1,  1],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // I: R->2: [[0, 0], [-1, 0], [2, 0], [-1, -2], [2, 1]]
 
         // when
@@ -425,23 +425,23 @@ function wallKickTest() {
 
     test('I: L->O, Kick: left border stuck', () => {
         // given
-        const m1 = applyMatrix2(LEFT_STATE)(LEFT_STATE)(-1)(1)([
+        const m1 = applyMatrix({ x: -1, y: 1, c: LEFT_STATE, p: LEFT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 1,  0,  0,  0,  0,  0],
             [ 1,  0,  0,  0,  0,  0],
             [ 1,  0,  0,  0,  0,  0],
             [ 1,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(SPAWN_STATE)(LEFT_STATE)(0)(1)([
+        const m2 = applyMatrix({ x: 0, y: 1, c: SPAWN_STATE, p: LEFT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 1,  1,  1,  1,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // I: L->O: [[0, 0], [1, 0], [-2, 0], [1, 2], [-2, -1]]
 
         // when
@@ -454,23 +454,23 @@ function wallKickTest() {
 
     test('S: R->2, Kick: (0, 0)', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: RIGHT_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  6,  0,  0,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0,  0,  0,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(0)([
+        const m2 = applyMatrix({ x: 1, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0,  6,  6,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
 
         // when
@@ -483,23 +483,23 @@ function wallKickTest() {
 
     test('S: R->2, Kick: (1, 0)', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: RIGHT_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  6,  0,  0,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0, 11,  0,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(0)([
+        const m2 = applyMatrix({ x: 2, y: 0, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  6,  6,  0],
             [ 0, 11,  6,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
 
         // when
@@ -512,23 +512,23 @@ function wallKickTest() {
 
     test('S: R->2, Kick: (1, 1)', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(0)([
+        const m1 = applyMatrix({ x: 1, y: 0, c: RIGHT_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  6,  0,  0,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0, 11, 11,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(1)([
+        const m2 = applyMatrix({ x: 2, y: 1, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0, 11, 11,  6,  6,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
 
         // when
@@ -541,7 +541,7 @@ function wallKickTest() {
 
     test('S: R->2, Kick: (0, -2)', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, c: RIGHT_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  6,  0,  0,  0],
             [ 0,  0,  6,  6,  0,  0],
@@ -549,9 +549,9 @@ function wallKickTest() {
             [ 0,  0,  0, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(1)(-1)([
+        const m2 = applyMatrix({ x: 1, y: -1, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0,  6,  6,  0,  0],
             [ 0,  6,  6,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
@@ -559,7 +559,7 @@ function wallKickTest() {
             [ 0,  0,  0, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
 
         // when
@@ -572,7 +572,7 @@ function wallKickTest() {
 
     test('S: R->2, Kick: (1, -2)', () => {
         // given
-        const m1 = applyMatrix2(RIGHT_STATE)(RIGHT_STATE)(1)(1)([
+        const m1 = applyMatrix({ x: 1, y: 1, c: RIGHT_STATE, p: RIGHT_STATE, m: [
             [ 0,  0, 11,  0,  0,  0],
             [ 0,  0,  6,  0,  0,  0],
             [ 0,  0,  6,  6,  0,  0],
@@ -580,9 +580,9 @@ function wallKickTest() {
             [ 0,  0,  0, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(-1)([
+        const m2 = applyMatrix({ x: 2, y: -1, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0, 11,  6,  6,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
@@ -590,7 +590,7 @@ function wallKickTest() {
             [ 0,  0,  0, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // S: R->2: [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
 
         // when
@@ -603,7 +603,7 @@ function wallKickTest() {
 
     test('S: 2->R, Kick: (0, 2)', () => {
         // given
-        const m1 = applyMatrix2(TWO_SUCCESSIVE_STATE)(RIGHT_STATE)(2)(-1)([
+        const m1 = applyMatrix({ x: 2, y: -1, c: TWO_SUCCESSIVE_STATE, p: RIGHT_STATE, m: [
             [ 0,  0, 11,  6,  6,  0],
             [ 0,  0,  6,  6,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
@@ -611,9 +611,9 @@ function wallKickTest() {
             [ 0,  0,  0, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
 
-        const m2 = applyMatrix2(RIGHT_STATE)(TWO_SUCCESSIVE_STATE)(2)(1)([
+        const m2 = applyMatrix({ x: 2, y: 1, c: RIGHT_STATE, p: TWO_SUCCESSIVE_STATE, m: [
             [ 0,  0, 11,  0,  0,  0],
             [ 0,  0,  0,  6,  0,  0],
             [ 0,  0,  0,  6,  6,  0],
@@ -621,7 +621,7 @@ function wallKickTest() {
             [ 0,  0,  0, 11,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
         // S: 2->R: [[0, 0], [-1, 0], [-1, -1], [0, 2], [-1, 2]]
 
         // when
@@ -634,7 +634,7 @@ function wallKickTest() {
 
     test('S: L->2, Kick: none possible', () => {
         // given
-        const m = applyMatrix2(LEFT_STATE)(LEFT_STATE)(4)(1)([
+        const m = applyMatrix({ x: 4, y: 1, c: LEFT_STATE, p: LEFT_STATE, m: [
             [ 0,  0,  0,  0, 11, 11],
             [ 0,  0,  0, 11,  6, 11],
             [ 0,  0,  0, 11,  6,  6],
@@ -642,7 +642,7 @@ function wallKickTest() {
             [ 0,  0,  0,  0, 11, 11],
             [ 0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0],
-        ]);
+        ]});
     
         // S: L->2: [[[0, 0], [-1, 0], [-1, 1], [0, -2], [-1, -2]]
 
