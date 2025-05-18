@@ -1,18 +1,40 @@
+import { activeTetromino, LANDED } from "/src/modules/utils.mjs";
+
 // (see https://tetris.wiki/Line_clear)
+
+const SPAWN_ROWS = 3;
 
 // TODO: Score?
 // TODO: Game Over?
 
-// Algorithmus:
-// Von unten nach oben:
-// 1. Reihe y_clear := height - 1, 
-// 2. falls y_clear vollständig besetzt, Reihe löschen, Reihe y_clear wird frei
-// 3. alle Blöcke mit y < y_clear um y + 1 bewegen
-// 4. Wenn y_clear > 3, y_clear -= 1, weiter mit 2.
+const _allTaken = row => row.every(cell => cell > LANDED);
 
-const lineClear = model => {
+const isTetrominoActive = model => activeTetromino(model).length !== 0;
 
-    return model;
+const row = model => index => model.m[index];
+
+const rowLength = model => index => row(model)(index).length;
+
+const bottomY = model => model.m.length - 1;
+
+const fillRow = size => value => [...Array(size).keys().map(_ => value)];
+
+const removeRow = model => index => ({
+    ...model,
+    m: [fillRow(rowLength(model)(index))(0)].concat(model.m.filter((_, currentIndex) => currentIndex !== index))
+})
+
+const _lineClear = (model, index) => {
+    if(index < SPAWN_ROWS) {
+        return model;
+    }
+    if(_allTaken(row(model)(index))) {
+        return _lineClear(removeRow(model)(index), index);
+    }
+    return _lineClear(model, index - 1);
 }
+
+const lineClear = model => 
+    isTetrominoActive(model) ? model : _lineClear(model, bottomY(model));
 
 export { lineClear };

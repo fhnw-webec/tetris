@@ -50,7 +50,7 @@ function lineClearTest() {
         result = move(result);
         result = move(result);
         result = move(result);
-        result = lineClear(model);
+        result = lineClear(result);
 
         // then
         assert(equals(result, m2), 'Not a correct single line clear');
@@ -92,7 +92,7 @@ function lineClearTest() {
         result = move(result);
         result = move(result);
         result = move(result);
-        result = lineClear(model);
+        result = lineClear(result);
 
         // then
         assert(equals(result, m2), 'Not a correct single line clear');

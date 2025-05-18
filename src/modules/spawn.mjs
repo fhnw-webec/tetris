@@ -19,14 +19,14 @@ const TETROMINO_TYPE = Object.freeze({
   Z: 7,
 });
 
-const _updateX = model => 
-    originX => ({ ...model, x: originX })
+const _initCoords = model => 
+    originX => ({ ...model, x: originX, y: 0 })
 
 const originX = model => 
     offset => Math.floor(model.m[0].length / 2) + offset
 
 const _apply = fn => offset => type => model => 
-    applyTetromino(fn(originX(model)(offset)), _updateX(model)(originX(model)(offset)), [0,0], type);
+    applyTetromino(fn(originX(model)(offset)), _initCoords(model)(originX(model)(offset)), [0,0], type);
 
 const TYPE_TO_FUNCTION = Object.freeze({
   [TETROMINO_TYPE.I]: _apply(i)(-2)(TETROMINO_TYPE.I),

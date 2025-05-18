@@ -5,6 +5,22 @@ import { activeTetromino, applyMatrix } from "/src/modules/utils.mjs";
 function activeTetrominoTests() {
     const CAT = 'Active tetromino tests';
 
+    test('No active tetromino', () => {
+        // given
+        const model =  applyMatrix({ m: [
+            [ 0,  0,  0],
+            [ 0, 12,  0],
+            [13, 13, 13]
+        ]});
+
+        // when
+        const result = activeTetromino(model);
+
+        // then
+        assert(result.length === 0, "Not top left O tetromino");
+
+    }, CAT);
+
     test('O top left', () => {
         // given
         const model =  applyMatrix({ m: [
