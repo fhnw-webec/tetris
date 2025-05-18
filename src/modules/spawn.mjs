@@ -2,11 +2,11 @@ import {  i, j, l, o, s, t, z  } from "/src/modules/tetromino.mjs";
 import {  applyTetromino  } from "/src/modules/utils.mjs";
 
 // Span wird in Row 0 erfolgen. Eigentlich sind das aber die
-// Rows 22, 23, bzw. 22 für das I-Tetro. Das das Koordinaten-
-// system auf dem Kopf ist, sind das die Rows -2, -3, bzw. -2.
-// Hier im Modell wird das nicht berücksichtigt. Die View 
-// zeichnet erst die Row 3 und folgende (0 basiert).
-// (siehe https://tetris.wiki/Super_Rotation_System)
+// Rows 22, 23, bzw. 22 für das I-Tetro. Da dieses Koordinaten-
+// system invertiert ist, sind das die Rows -2, -3, bzw. -2.
+// Im Modell wird das nicht berücksichtigt und die erste Zeile
+// ist Row 0. Die View zeichnet erst die Row 3 und folgende (0 basiert,
+// siehe https://tetris.wiki/Super_Rotation_System).
 
 const TETROMINO_TYPE = Object.freeze({
   EMPTY: 0,
@@ -19,8 +19,14 @@ const TETROMINO_TYPE = Object.freeze({
   Z: 7,
 });
 
+const _updateX = model => 
+    originX => ({ ...model, x: originX })
+
+const originX = model => 
+    offset => Math.floor(model.m[0].length / 2) + offset
+
 const _apply = fn => offset => type => model => 
-    applyTetromino(fn(Math.floor(model.m[0].length / 2) + offset), model, [0,0], type);
+    applyTetromino(fn(originX(model)(offset)), _updateX(model)(originX(model)(offset)), [0,0], type);
 
 const TYPE_TO_FUNCTION = Object.freeze({
   [TETROMINO_TYPE.I]: _apply(i)(-2)(TETROMINO_TYPE.I),
@@ -34,6 +40,5 @@ const TYPE_TO_FUNCTION = Object.freeze({
 
 const spawn = model => tetrominoType => 
     TYPE_TO_FUNCTION[tetrominoType](model);
-   
 
 export{ spawn, TETROMINO_TYPE };
