@@ -1,6 +1,6 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
 import { spawn, TETROMINO_TYPE } from '/src/modules/logic/spawn.mjs';
-import { equals, move, right, left } from '/src/modules/logic/logic.mjs';
+import { equals, move, right, left } from '/src/modules/logic/move.mjs';
 import { rotateCCW, rotateCW } from '/src/modules/logic/rotation.mjs';
 import { applyMatrix, SPAWN_STATE, LEFT_STATE } from '/src/modules/logic/utils.mjs';
 import { lineClear } from '/src/modules/logic/line-clear.mjs';

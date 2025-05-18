@@ -1,2 +1,2 @@
-import { a } from "./modules/logic/logic.mjs";
+import { a } from "./modules/logic/move.mjs";
 

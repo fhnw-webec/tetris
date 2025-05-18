@@ -1,6 +1,6 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
 import { rotateCW, rotateCCW } from "/src/modules/logic/rotation.mjs";
-import { equalsPos, equalsMatrix } from "/src/modules/logic/logic.mjs";
+import { equalsPos, equalsMatrix } from "/src/modules/logic/move.mjs";
 import { applyMatrix } from "/src/modules/logic/utils.mjs";
 
 

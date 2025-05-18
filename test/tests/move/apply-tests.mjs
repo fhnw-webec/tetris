@@ -1,5 +1,5 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { equals } from "../../../src/modules/logic/logic.mjs";
+import { equals } from "../../../src/modules/logic/move.mjs";
 import { applyMatrix, applyTetromino } from "/src/modules/logic/utils.mjs";
 
 function applyTests() {

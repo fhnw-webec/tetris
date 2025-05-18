@@ -1,5 +1,5 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { left, move, equals } from "/src/modules/logic/logic.mjs";
+import { left, move, equals } from "/src/modules/logic/move.mjs";
 import { applyMatrix } from "/src/modules/logic/utils.mjs";
 
 function oneLeftTest() {

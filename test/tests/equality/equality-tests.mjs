@@ -1,6 +1,6 @@
 import { RIGHT_STATE } from "../../../src/modules/logic/utils.mjs";
 import { test, assert } from "../../lib/unit-test.mjs"
-import { equals } from "/src/modules/logic/logic.mjs";
+import { equals } from "/src/modules/logic/move.mjs";
 import { applyMatrix, SPAWN_STATE, LEFT_STATE } from "/src/modules/logic/utils.mjs";
 
 function equalityTest() {
