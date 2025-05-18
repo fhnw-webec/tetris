@@ -1,4 +1,4 @@
-import { activeTetromino, LANDED } from "/src/modules/logic/utils.mjs";
+import { fillRow, activeTetromino, LANDED } from "/src/modules/logic/utils.mjs";
 
 // (see https://tetris.wiki/Line_clear)
 
@@ -16,8 +16,6 @@ const row = model => index => model.m[index];
 const rowLength = model => index => row(model)(index).length;
 
 const bottomY = model => model.m.length - 1;
-
-const fillRow = size => value => [...Array(size).keys().map(_ => value)];
 
 const removeRow = model => index => ({
     ...model,

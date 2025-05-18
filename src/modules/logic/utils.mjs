@@ -1,3 +1,6 @@
+const ROWS = 20;
+const COLS = 10;
+
 const LANDED = 10;
 const SPAWN_STATE = 'O';
 const RIGHT_STATE = 'R';
@@ -12,6 +15,10 @@ const first = ls => ls.length > 0 ? ls[0] : null;
 const nth = ls => n => (n + 1) <= ls.length ? ls[n] : null;
 
 const identity = _ => _;
+
+const range = from => to => [...Array(to - from).keys().map(n => from + n)];
+
+const fillRow = size => value => range(0)(size).map(_ => value);
 
 const type = model => 
     model.m.flat().find(e => e > 0 && e < LANDED) || 0;
@@ -49,4 +56,4 @@ const activeTetromino = model =>
 
 export { x, y, first, nth, activeTetromino, LANDED, applyMatrix, type, applyTetromino, 
          identity, isValidMove, hasCollisionWithButtom, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
-         TWO_SUCCESSIVE_STATE };
+         TWO_SUCCESSIVE_STATE, range, fillRow, ROWS, COLS };
