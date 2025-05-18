@@ -15,7 +15,7 @@ const keyBindings = {
   z: rotateCCW,
 };
 
-// TODO Lock-Delay
+// TODO Lock-Delay!
 const ONE_FRAME = 1000 / 60; // Level 1 = 16.67ms, https://tetris.wiki/Marathon
 const DELAY = 10 * ONE_FRAME;
 const TICK = 50 * ONE_FRAME;
@@ -23,7 +23,6 @@ const TICK = 50 * ONE_FRAME;
 let counter = TICK;
 
 let model = createModel();
-model = spawn(model)(TETROMINO_TYPE.I);
 
 function handleKeyPress(event) {
   const action = keyBindings[event.key];
@@ -40,6 +39,7 @@ setInterval(() => {
     render(model);
 
     if(counter < 0) {
+        model = spawn(model)(TETROMINO_TYPE.S);
         model = move(model);
         model = lineClear(model);
         counter = TICK;
