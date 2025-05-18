@@ -1,5 +1,5 @@
-import {  i, j, l, o, s, t, z  } from "/src/modules/tetromino.mjs";
-import {  applyTetromino  } from "/src/modules/utils.mjs";
+import {  i, j, l, o, s, t, z  } from "/src/modules/logic/tetromino.mjs";
+import {  applyTetromino  } from "/src/modules/logic/utils.mjs";
 
 // Span wird in Row 0 erfolgen. Eigentlich sind das aber die
 // Rows 22, 23, bzw. 22 für das I-Tetro. Da dieses Koordinaten-

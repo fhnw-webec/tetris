@@ -1,4 +1,4 @@
-import { activeTetromino, LANDED } from "/src/modules/utils.mjs";
+import { activeTetromino, LANDED } from "/src/modules/logic/utils.mjs";
 
 // (see https://tetris.wiki/Line_clear)
 

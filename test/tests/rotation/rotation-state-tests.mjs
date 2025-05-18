@@ -1,7 +1,7 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
-import { rotateCW, rotateCCW } from "/src/modules/rotation.mjs";
-import { equals } from "/src/modules/logic.mjs";
-import { applyMatrix, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE } from "/src/modules/utils.mjs";
+import { rotateCW, rotateCCW } from "/src/modules/logic/rotation.mjs";
+import { equals } from "/src/modules/logic/logic.mjs";
+import { applyMatrix, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, TWO_SUCCESSIVE_STATE } from "/src/modules/logic/utils.mjs";
 
 
 function rotationStateTest() {

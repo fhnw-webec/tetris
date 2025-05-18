@@ -1,5 +1,5 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { simulateMove, equalsMatrix } from "../../../src/modules/logic.mjs";
+import { simulateMove, equalsMatrix } from "../../../src/modules/logic/logic.mjs";
 
 function simulationTests() {
     const CAT = 'Simulate moves';

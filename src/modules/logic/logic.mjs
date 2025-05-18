@@ -1,4 +1,4 @@
-import { x, y, activeTetromino, applyTetromino, isValidMove, hasCollisionWithButtom, LANDED } from "/src/modules/utils.mjs";
+import { x, y, activeTetromino, applyTetromino, isValidMove, hasCollisionWithButtom, LANDED } from "/src/modules/logic/utils.mjs";
 
 // coordinate-system: origin is at upper left, x is horizontal, y is vertical
 // codes: 0: empty, I: 1, O: 2, T: 3, J: 4, L: 5, S: 6, Z: 7

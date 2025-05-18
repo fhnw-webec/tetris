@@ -1,6 +1,6 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { right, move, equals } from "/src/modules/logic.mjs";
-import { applyMatrix } from "/src/modules/utils.mjs";
+import { right, move, equals } from "/src/modules/logic/logic.mjs";
+import { applyMatrix } from "/src/modules/logic/utils.mjs";
 
 function rightTests() {
     const CAT = 'Right';

@@ -1,5 +1,5 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { applyMatrix, isValidMove } from "/src/modules/utils.mjs";
+import { applyMatrix, isValidMove } from "/src/modules/logic/utils.mjs";
 
 function validTests() {
     const CAT = 'Tests if moves are valid';

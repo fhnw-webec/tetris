@@ -1,5 +1,5 @@
-import { x, y, activeTetromino, type, applyTetromino, isValidMove } from '/src/modules/utils.mjs';
-import { cwStateChange, ccwStateChange, kickPositions } from '/src/modules/wall-kicks.mjs';
+import { x, y, activeTetromino, type, applyTetromino, isValidMove } from '/src/modules/logic/utils.mjs';
+import { cwStateChange, ccwStateChange, kickPositions } from '/src/modules/logic/wall-kicks.mjs';
 
 const PIVOTS = { 1: 1.5, 2: 0.5  } // 1: I, 2: O
 const ALL_PIVOT_EXCEPT_I_O = 1;

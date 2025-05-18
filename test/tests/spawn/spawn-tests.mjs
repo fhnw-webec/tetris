@@ -1,7 +1,7 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
-import { spawn, TETROMINO_TYPE } from '/src/modules/spawn.mjs';
-import { equals } from '/src/modules/logic.mjs';
-import { applyMatrix, SPAWN_STATE } from '/src/modules/utils.mjs';
+import { spawn, TETROMINO_TYPE } from '/src/modules/logic/spawn.mjs';
+import { equals } from '/src/modules/logic/logic.mjs';
+import { applyMatrix, SPAWN_STATE } from '/src/modules/logic/utils.mjs';
 
 function spawnTest() {
     const SPAWN = 'Spawn tests';

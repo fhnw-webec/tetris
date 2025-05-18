@@ -1,7 +1,7 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
-import { rotateCW, rotateCCW } from "/src/modules/rotation.mjs";
-import { equalsPos, equalsMatrix } from "/src/modules/logic.mjs";
-import { applyMatrix } from "/src/modules/utils.mjs";
+import { rotateCW, rotateCCW } from "/src/modules/logic/rotation.mjs";
+import { equalsPos, equalsMatrix } from "/src/modules/logic/logic.mjs";
+import { applyMatrix } from "/src/modules/logic/utils.mjs";
 
 
 const equals = (m1, m2) => 

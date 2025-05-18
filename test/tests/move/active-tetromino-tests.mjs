@@ -1,6 +1,6 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { equals, equalsMatrix } from "../../../src/modules/logic.mjs";
-import { activeTetromino, applyMatrix } from "/src/modules/utils.mjs";
+import { equals, equalsMatrix } from "../../../src/modules/logic/logic.mjs";
+import { activeTetromino, applyMatrix } from "/src/modules/logic/utils.mjs";
 
 function activeTetrominoTests() {
     const CAT = 'Active tetromino tests';

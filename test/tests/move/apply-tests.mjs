@@ -1,6 +1,6 @@
 import { test, assert } from "../../lib/unit-test.mjs"
-import { equals } from "../../../src/modules/logic.mjs";
-import { applyMatrix, applyTetromino } from "/src/modules/utils.mjs";
+import { equals } from "../../../src/modules/logic/logic.mjs";
+import { applyMatrix, applyTetromino } from "/src/modules/logic/utils.mjs";
 
 function applyTests() {
     const CAT = 'Apply-Tests';

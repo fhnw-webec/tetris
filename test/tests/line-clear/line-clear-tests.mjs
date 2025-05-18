@@ -1,10 +1,10 @@
 import { test, assert } from "/test/lib/unit-test.mjs"
-import { spawn, TETROMINO_TYPE } from '/src/modules/spawn.mjs';
-import { equals, move, right, left } from '/src/modules/logic.mjs';
-import { rotateCCW, rotateCW } from '/src/modules/rotation.mjs';
-import { applyMatrix, SPAWN_STATE, LEFT_STATE } from '/src/modules/utils.mjs';
-import { lineClear } from '/src/modules/line-clear.mjs';
-import { RIGHT_STATE } from "../../../src/modules/utils.mjs";
+import { spawn, TETROMINO_TYPE } from '/src/modules/logic/spawn.mjs';
+import { equals, move, right, left } from '/src/modules/logic/logic.mjs';
+import { rotateCCW, rotateCW } from '/src/modules/logic/rotation.mjs';
+import { applyMatrix, SPAWN_STATE, LEFT_STATE } from '/src/modules/logic/utils.mjs';
+import { lineClear } from '/src/modules/logic/line-clear.mjs';
+import { RIGHT_STATE } from "../../../src/modules/logic/utils.mjs";
 
 function lineClearTest() {
     const LINE_CLEAR = 'Line clear tests';
