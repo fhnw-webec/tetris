@@ -1,4 +1,4 @@
-import { fillRow, activeTetromino, LANDED } from "/src/modules/logic/utils.mjs";
+import { fillRow, isTetrominoActive, LANDED } from "/src/modules/logic/utils.mjs";
 
 // (see https://tetris.wiki/Line_clear)
 
@@ -8,8 +8,6 @@ const SPAWN_ROWS = 3;
 // TODO: Game Over?
 
 const _allTaken = row => row.every(cell => cell > LANDED);
-
-const isTetrominoActive = model => activeTetromino(model).length !== 0;
 
 const row = model => index => model.m[index];
 

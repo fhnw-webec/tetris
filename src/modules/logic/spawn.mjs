@@ -1,5 +1,5 @@
 import {  i, j, l, o, s, t, z  } from "/src/modules/logic/tetromino.mjs";
-import {  applyTetromino  } from "/src/modules/logic/utils.mjs";
+import {  applyTetromino, isTetrominoActive  } from "/src/modules/logic/utils.mjs";
 
 // Span wird in Row 0 erfolgen. Eigentlich sind das aber die
 // Rows 22, 23, bzw. 22 für das I-Tetro. Da dieses Koordinaten-
@@ -39,6 +39,6 @@ const TYPE_TO_FUNCTION = Object.freeze({
 });
 
 const spawn = model => tetrominoType => 
-    TYPE_TO_FUNCTION[tetrominoType](model);
+    isTetrominoActive(model) ? model : TYPE_TO_FUNCTION[tetrominoType](model);
 
 export{ spawn, TETROMINO_TYPE };

@@ -161,6 +161,22 @@ function spawnTest() {
         assert(equals(result, m2), 'Not a correct spawn');
 
     }, SPAWN);
+
+    test('Noop when active tetromino', () => {
+        // given
+        const m = applyMatrix({ x: 0, y: 0, c: SPAWN_STATE, p: SPAWN_STATE, m: [
+            [ 0,  3,  0,  3,  0,  0],
+            [ 0,  0,  3,  3,  3,  0],
+            [ 0, 11,  0,  0,  0,  0],
+        ]});
+        
+        // when
+        const result = spawn(m)(TETROMINO_TYPE.Z);
+
+        // then
+        assert(equals(result, m), 'Should be noop');
+
+    }, SPAWN);
 }
 
 export { spawnTest }; 

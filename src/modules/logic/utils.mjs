@@ -54,6 +54,8 @@ const applyMatrix = ({ x = 0, y = 0, c = SPAWN_STATE, p = SPAWN_STATE, m }) =>
 const activeTetromino = model =>
     model.m.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));
 
+const isTetrominoActive = model => activeTetromino(model).length !== 0;
+
 export { x, y, first, nth, activeTetromino, LANDED, applyMatrix, type, applyTetromino, 
          identity, isValidMove, hasCollisionWithButtom, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
-         TWO_SUCCESSIVE_STATE, range, fillRow, ROWS, COLS };
+         TWO_SUCCESSIVE_STATE, range, fillRow, ROWS, COLS, isTetrominoActive };
