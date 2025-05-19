@@ -13,39 +13,39 @@ const COLORS = Object.freeze({
 
 const createSection = () => document.createElement("section");
 
-const createGrid = root => rows => cols => {
+const createGrid = root => rows => cols => prefix => {
     const section = createSection();
     root.appendChild(section);
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             let cell = document.createElement("div");
-            cell.setAttribute('id', `x${col}y${row}`);
+            cell.setAttribute('id', `${prefix}x${col}y${row}`);
             section.appendChild(cell);
         }
     }
 }
 
 const createPreview = root => {
-    createGrid(root)(4)(COLS);
+    createGrid(root)(4)(6)('p-');
 }
 
 const createUI = () => {
     const root = document.getElementById('app');
-    createGrid(root)(ROWS)(COLS);
+    createGrid(root)(ROWS)(COLS)('');
     createPreview(root);
 }
 
 const _color = symbol => COLORS[symbol] ?? 'lightgrey';
 
-const _draw = x => y => color => {
+const _draw = x => y => color => prefix => {
     const c = color !== 'empty' ? color : 'inherit';
-    document.getElementById(`x${x}y${y}`).style.backgroundColor = c;
+    document.getElementById(`${prefix}x${x}y${y}`).style.backgroundColor = c;
 }
 
-const render = model => {
+const render = (model, prefix = '') => {
     for (let y = 0; y < model.m.length; y++) {
         for (let x = 0; x < model.m[y].length; x++) {
-            _draw(x)(y)(_color(model.m[y][x]));
+            _draw(x)(y)(_color(model.m[y][x]))(prefix);
         }
     }
 }

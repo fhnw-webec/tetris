@@ -39,6 +39,9 @@ const TYPE_TO_FUNCTION = Object.freeze({
 });
 
 const spawn = model => nextFn => 
-    isTetrominoActive(model) ? model : TYPE_TO_FUNCTION[nextFn()](model);
+    isTetrominoActive(model) ? model : spawnStrict(model)(nextFn);
 
-export{ spawn, TETROMINO_TYPE };
+const spawnStrict = model => nextFn => 
+    TYPE_TO_FUNCTION[nextFn()](model);
+
+export{ spawn, spawnStrict, TETROMINO_TYPE };
