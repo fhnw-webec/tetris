@@ -2,15 +2,13 @@ import {  ROWS, COLS } from "/src/modules/logic/utils.mjs";
 
 const COLORS = Object.freeze({
     0: 'empty',
-    1: 'lightblue', // I
+    1: 'cyan',      // I
     2: 'yellow',    // O
     3: 'magenta',   // T
-    4: 'darkblue',  // J
+    4: 'blue',      // J
     5: 'orange',    // L
-    6: 'green',     // S
+    6: 'limegreen', // S
     7: 'red',       // Z
-    13: 'grey',       // Z
-    11: 'grey',       // Z
 });
 
 const createGrid = () => {
@@ -24,13 +22,11 @@ const createGrid = () => {
     }
 }
 
-const _color = symbol => COLORS[symbol] ?? 'grey';
+const _color = symbol => COLORS[symbol] ?? 'lightgrey';
 
 const _draw = x => y => color => {
     const c = color !== 'empty' ? color : 'inherit';
-    const b = color !== 'empty' ? 'none' : `0.5px solid darkgrey`;
     document.getElementById(`x${x}y${y}`).style.backgroundColor = c;
-    document.getElementById(`x${x}y${y}`).style.border = b;
 }
 
 const render = model => {

@@ -39,7 +39,7 @@ setInterval(() => {
     counter -= ONE_FRAME;
     render(model);
 
-    if(counter < 0) {
+    if(counter <= 0) {
         model = spawn(model)(next());
         model = move(model);
         model = lineClear(model);
