@@ -24,6 +24,8 @@ const createGrid = () => {
     }
 }
 
+const _color = symbol => COLORS[symbol] ?? 'grey';
+
 const _draw = x => y => color => {
     const c = color !== 'empty' ? color : 'inherit';
     const b = color !== 'empty' ? 'none' : `0.5px solid darkgrey`;
@@ -34,7 +36,7 @@ const _draw = x => y => color => {
 const render = model => {
     for (let y = 0; y < model.m.length; y++) {
         for (let x = 0; x < model.m[y].length; x++) {
-            _draw(x)(y)(COLORS[model.m[y][x]]);
+            _draw(x)(y)(_color(model.m[y][x]));
         }
     }
 }
