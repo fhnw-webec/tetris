@@ -1,15 +1,4 @@
-//import { TETROMINO_TYPE  } from '/src/modules/logic/spawn.mjs';
-
-const TETROMINO_TYPE = Object.freeze({
-  EMPTY: 0,
-  I: 1,
-  O: 2,
-  T: 3,
-  J: 4,
-  L: 5,
-  S: 6,
-  Z: 7,
-});
+import { TETROMINO_TYPE  } from '/src/modules/logic/spawn.mjs';
 
 const _shuffle = array => {
   let currentIndex = array.length;
@@ -27,15 +16,15 @@ const _shuffle = array => {
   return array;
 }
 
-const tetrominos = Object.values(TETROMINO_TYPE);
-let currentBag = [];
+const _tetrominos = Object.values(TETROMINO_TYPE);
+let _currentBag = [];
 
 const next = () => {
-    if(currentBag.length === 0) {
-        currentBag = _shuffle(tetrominos);
+    if(_currentBag.length === 0) {
+        _currentBag = _shuffle(_tetrominos);
     }
-    const n = currentBag[0];
-    currentBag = currentBag.slice(1);
+    const n = _currentBag[0];
+    _currentBag = _currentBag.slice(1);
     return n;
 }
 
