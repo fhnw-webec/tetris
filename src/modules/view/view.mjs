@@ -11,15 +11,28 @@ const COLORS = Object.freeze({
     7: 'red',       // Z
 });
 
-const createGrid = () => {
-    const root = document.getElementById('app');
-    for (let row = 0; row < ROWS; row++) {
-        for (let col = 0; col < COLS; col++) {
+const createSection = () => document.createElement("section");
+
+const createGrid = root => rows => cols => {
+    const section = createSection();
+    root.appendChild(section);
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
             let cell = document.createElement("div");
             cell.setAttribute('id', `x${col}y${row}`);
-            root.appendChild(cell);
+            section.appendChild(cell);
         }
     }
+}
+
+const createPreview = root => {
+    createGrid(root)(4)(COLS);
+}
+
+const createUI = () => {
+    const root = document.getElementById('app');
+    createGrid(root)(ROWS)(COLS);
+    createPreview(root);
 }
 
 const _color = symbol => COLORS[symbol] ?? 'lightgrey';
@@ -37,4 +50,4 @@ const render = model => {
     }
 }
 
-export { createGrid, render }
+export { createUI, render }

@@ -1,4 +1,4 @@
-import { createGrid, render } from '/src/modules/view/view.mjs';
+import { createUI, render } from '/src/modules/view/view.mjs';
 import { createModel } from '/src/modules/logic/model.mjs';
 import { spawn } from '/src/modules/logic/spawn.mjs';
 import { move, left, right } from '/src/modules/logic/move.mjs';
@@ -7,7 +7,7 @@ import { lineClear } from '/src/modules/logic/line-clear.mjs';
 import { next, peek } from "/src/modules/logic/random-bag.mjs";
 
 
-createGrid();
+createUI();
 
 const keyBindings = {
   ArrowLeft: left,
