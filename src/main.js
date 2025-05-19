@@ -1,10 +1,10 @@
 import { createGrid, render } from '/src/modules/view/view.mjs';
 import { createModel } from '/src/modules/logic/model.mjs';
-import { spawn  } from '/src/modules/logic/spawn.mjs';
+import { spawn } from '/src/modules/logic/spawn.mjs';
 import { move, left, right } from '/src/modules/logic/move.mjs';
 import { rotateCW, rotateCCW } from '/src/modules/logic/rotation.mjs';
 import { lineClear } from '/src/modules/logic/line-clear.mjs';
-import { next } from "/src/modules/logic/random-bag.mjs";
+import { next, peek } from "/src/modules/logic/random-bag.mjs";
 
 
 createGrid();
@@ -40,9 +40,10 @@ setInterval(() => {
     render(model);
 
     if(counter <= 0) {
-        model = spawn(model)(next());
+        model = spawn(model)(next);
         model = move(model);
         model = lineClear(model);
         counter = TICK;
+        console.log(peek())
     }
 }, ONE_FRAME);

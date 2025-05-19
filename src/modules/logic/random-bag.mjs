@@ -16,16 +16,24 @@ const _shuffle = array => {
   return array;
 }
 
-const _tetrominos = Object.values(TETROMINO_TYPE);
+const _tetrominos = Object.values(TETROMINO_TYPE).slice(1);
 let _currentBag = [];
+const CURRENT = 0;
+
+const peek = () => {
+    if(_currentBag.length < 2) {
+        _currentBag = _currentBag.concat(_shuffle(_tetrominos));
+    }
+    return _currentBag[CURRENT];
+}
 
 const next = () => {
     if(_currentBag.length === 0) {
         _currentBag = _shuffle(_tetrominos);
     }
-    const n = _currentBag[0];
+    const n = _currentBag[CURRENT];
     _currentBag = _currentBag.slice(1);
     return n;
 }
 
-export { next };
+export { next, peek };
