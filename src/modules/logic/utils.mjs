@@ -1,4 +1,4 @@
-const ROWS = 15;
+const ROWS = 23;
 const COLS = 10;
 
 const LANDED = 10;
