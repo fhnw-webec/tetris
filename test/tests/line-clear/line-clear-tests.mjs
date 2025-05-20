@@ -34,7 +34,7 @@ function lineClearTest() {
         ]});
         
         // when
-        let result = spawn(m1)(TETROMINO_TYPE.T);
+        let result = spawn(m1)(() => TETROMINO_TYPE.T);
         result = move(result);
         result = rotateCCW(result);
         result = right(result);
@@ -77,7 +77,7 @@ function lineClearTest() {
         ]});
         
         // when
-        let result = spawn(m1)(TETROMINO_TYPE.Z);
+        let result = spawn(m1)(() => TETROMINO_TYPE.Z);
         result = rotateCW(result);
         result = move(result);
         result = move(result);
@@ -118,7 +118,7 @@ function lineClearTest() {
         ]});
         
         // when
-        let result = spawn(m1)(TETROMINO_TYPE.L);
+        let result = spawn(m1)(() => TETROMINO_TYPE.L);
         result = left(result);
         result = rotateCCW(result);
         result = move(result);
@@ -167,7 +167,7 @@ function lineClearTest() {
         ]});
         
         // when
-        let result = spawn(m1)(TETROMINO_TYPE.I);
+        let result = spawn(m1)(() => TETROMINO_TYPE.I);
         result = left(result);
         result = left(result);
         result = left(result);
@@ -219,7 +219,7 @@ function lineClearTest() {
         ]});
         
         // when
-        let result = spawn(m1)(TETROMINO_TYPE.I);
+        let result = spawn(m1)(() => TETROMINO_TYPE.I);
         result = right(result);
         result = right(result);
         result = right(result);
@@ -268,7 +268,7 @@ function lineClearTest() {
         ]});
         
         // when
-        let result = spawn(m1)(TETROMINO_TYPE.L);
+        let result = spawn(m1)(() => TETROMINO_TYPE.L);
         result = rotateCCW(result);
         result = left(result);
         result = move(result);

@@ -6,6 +6,7 @@ import { rotateCW, rotateCCW } from '/src/modules/logic/rotation.mjs';
 import { lineClear } from '/src/modules/logic/line-clear.mjs';
 import { next, peek } from "/src/modules/logic/random-bag.mjs";
 
+const PREVIEW_RENDER_PREFIX = '-p';
 const ONE_FRAME = 1000 / 60; // Level 1 = 16.67ms, https://tetris.wiki/Marathon
 const DELAY = 10 * ONE_FRAME;
 const TICK = 40 * ONE_FRAME;
@@ -43,7 +44,7 @@ let preview = createModel(4, 6);
 setInterval(() => {
     counter -= ONE_FRAME;
     render(model);
-    render(preview, 'p-');
+    render(preview, PREVIEW_RENDER_PREFIX);
 
     if(counter <= 0) {
         model = spawn(model)(next);

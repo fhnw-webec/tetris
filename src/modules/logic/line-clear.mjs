@@ -1,11 +1,6 @@
-import { fillRow, isTetrominoActive, LANDED } from "/src/modules/logic/utils.mjs";
+import { fillRow, isTetrominoActive, LANDED, SPAWN_ROWS } from "/src/modules/logic/utils.mjs";
 
 // (see https://tetris.wiki/Line_clear)
-
-const SPAWN_ROWS = 3;
-
-// TODO: Score?
-// TODO: Game Over?
 
 const _allTaken = row => row.every(cell => cell > LANDED);
 
@@ -33,4 +28,4 @@ const _lineClear = (model, index) => {
 const lineClear = model => 
     isTetrominoActive(model) ? model : _lineClear(model, bottomY(model));
 
-export { lineClear };
+export { lineClear, SPAWN_ROWS };

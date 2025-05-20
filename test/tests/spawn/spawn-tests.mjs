@@ -21,7 +21,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.I);
+        const result = spawn(m1)(() => TETROMINO_TYPE.I);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -43,7 +43,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.O);
+        const result = spawn(m1)(() => TETROMINO_TYPE.O);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -67,7 +67,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.T);
+        const result = spawn(m1)(() => TETROMINO_TYPE.T);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -89,7 +89,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.J);
+        const result = spawn(m1)(() => TETROMINO_TYPE.J);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -111,7 +111,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.L);
+        const result = spawn(m1)(() => TETROMINO_TYPE.L);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -133,7 +133,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.S);
+        const result = spawn(m1)(() => TETROMINO_TYPE.S);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -155,7 +155,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m1)(TETROMINO_TYPE.Z);
+        const result = spawn(m1)(() => TETROMINO_TYPE.Z);
 
         // then
         assert(equals(result, m2), 'Not a correct spawn');
@@ -171,7 +171,7 @@ function spawnTest() {
         ]});
         
         // when
-        const result = spawn(m)(TETROMINO_TYPE.Z);
+        const result = spawn(m)(() => TETROMINO_TYPE.Z);
 
         // then
         assert(equals(result, m), 'Should be noop');

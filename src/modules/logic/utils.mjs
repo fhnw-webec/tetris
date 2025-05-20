@@ -2,6 +2,7 @@ const ROWS = 23;
 const COLS = 10;
 
 const LANDED = 10;
+const SPAWN_ROWS = 3;
 const SPAWN_STATE = 'O';
 const RIGHT_STATE = 'R';
 const LEFT_STATE = 'L';
@@ -58,4 +59,4 @@ const isTetrominoActive = model => activeTetromino(model).length !== 0;
 
 export { x, y, first, nth, activeTetromino, LANDED, applyMatrix, type, applyTetromino, 
          identity, isValidMove, hasCollisionWithButtom, SPAWN_STATE, RIGHT_STATE, LEFT_STATE, 
-         TWO_SUCCESSIVE_STATE, range, fillRow, ROWS, COLS, isTetrominoActive };
+         TWO_SUCCESSIVE_STATE, range, fillRow, ROWS, COLS, isTetrominoActive, SPAWN_ROWS };
