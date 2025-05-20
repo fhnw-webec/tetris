@@ -5,8 +5,9 @@ import { move, left, right } from '/src/modules/logic/move.mjs';
 import { rotateCW, rotateCCW } from '/src/modules/logic/rotation.mjs';
 import { lineClear } from '/src/modules/logic/line-clear.mjs';
 import { next, peek } from "/src/modules/logic/random-bag.mjs";
+import { computeGameOver } from "/src/modules/logic/game-over.mjs";
 
-const PREVIEW_RENDER_PREFIX = '-p';
+const PREVIEW_RENDER_PREFIX = 'p-';
 const ONE_FRAME = 1000 / 60; // Level 1 = 16.67ms, https://tetris.wiki/Marathon
 const DELAY = 10 * ONE_FRAME;
 const TICK = 40 * ONE_FRAME;
@@ -51,6 +52,14 @@ setInterval(() => {
         preview = spawnStrict(preview)(peek);
         model = move(model);
         model = lineClear(model);
-        counter = TICK;
+        model = computeGameOver(model);
+
+        if(model.go) {
+            model = createModel();
+            counter = 3 * TICK;
+        }
+        else {
+            counter = TICK;
+        }
     }
 }, ONE_FRAME);
