@@ -11,6 +11,8 @@ const COLORS = Object.freeze({
     7: 'red',       // Z
 });
 
+const PREVIEW_RENDER_PREFIX = 'p-';
+
 const _createElement = name => document.createElement(name);
 
 const createUI = () => {
@@ -43,12 +45,11 @@ const _updateGrid = x => y => color => prefix => {
 
 const _updateScore = model => {
     const header = document.querySelector('body > main > header');
-    header.textContent = `Score: ${model.s}`;
+    header.textContent = `Score: ${ model.s }`;
     return model;
 }
 
-const render = (model, prefix = '') => {
-    _updateScore(model);
+const _render = model => prefix => {
     for (let y = 0; y < model.m.length; y++) {
         for (let x = 0; x < model.m[y].length; x++) {
             _updateGrid(x)(y)(_color(model.m[y][x]))(prefix);
@@ -56,4 +57,11 @@ const render = (model, prefix = '') => {
     }
 }
 
-export { createUI, render }
+const render = model => {
+    model = _updateScore(model);
+    _render(model)('');
+}
+
+const renderPreview = model => _render(model)(PREVIEW_RENDER_PREFIX);
+
+export { createUI, render, renderPreview }

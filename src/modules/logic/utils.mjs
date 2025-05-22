@@ -50,7 +50,7 @@ const applyTetromino = (tetromino, model, kick = [0, 0], t = type(model)) => ({
 });
 
 const applyMatrix = ({ x = 0, y = 0, c = SPAWN_STATE, p = SPAWN_STATE, m }) =>
-    ({ m: m, c: c, p: p, x: x, y: y })
+    ({ m: m, c: c, p: p, x: x, y: y, s: 0, go: false })
 
 const activeTetromino = model =>
     model.m.flatMap((row, y) => row.flatMap((cell, x) => cell < LANDED && cell > 0 ? [[x, y]] : []));

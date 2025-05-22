@@ -56,8 +56,8 @@ function gameOverTests() {
         // given
         const m = applyMatrix({ x: 0, y: 0, c: SPAWN_STATE, p: SPAWN_STATE, m: [
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0], // off playfieldd
+            [ 0,  0,  0,  0,  0,  0, 11,  0,  0,  0],
+            [ 0,  0,  0,  0,  0,  0, 11,  0,  0,  0], // off playfieldd
             [ 0,  0,  0,  0,  0,  0, 11,  0,  0,  0], // first line of playfield
             [ 0,  0,  0,  0,  0,  0, 11,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0, 11, 11,  0],
@@ -78,7 +78,6 @@ function gameOverTests() {
     test('Playfield not big enough', () => {
         // given
         const m = applyMatrix({ x: 0, y: 0, c: SPAWN_STATE, p: SPAWN_STATE, m: [
-            [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
             [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
         ]});
 

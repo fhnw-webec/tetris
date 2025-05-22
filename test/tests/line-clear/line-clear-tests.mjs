@@ -3,7 +3,7 @@ import { spawn, TETROMINO_TYPE } from '/src/modules/logic/spawn.mjs';
 import { equals, move, right, left } from '/src/modules/logic/move.mjs';
 import { rotateCCW, rotateCW } from '/src/modules/logic/rotation.mjs';
 import { applyMatrix, SPAWN_STATE, LEFT_STATE } from '/src/modules/logic/utils.mjs';
-import { lineClear } from '/src/modules/logic/line-clear.mjs';
+import { lineClear, SCORE_UNIT } from '/src/modules/logic/line-clear.mjs';
 import { RIGHT_STATE } from "../../../src/modules/logic/utils.mjs";
 
 function lineClearTest() {
@@ -49,6 +49,7 @@ function lineClearTest() {
 
         // then
         assert(equals(result, m2), 'Not a correct single line clear');
+        assert(result.s === SCORE_UNIT, 'Should be 1 * SCORE_UNIT');
 
     }, LINE_CLEAR);
 
@@ -88,6 +89,7 @@ function lineClearTest() {
 
         // then
         assert(equals(result, m2), 'Not a correct double line clear');
+        assert(result.s === 2 * SCORE_UNIT, 'Should be 2 * SCORE_UNIT');
 
     }, LINE_CLEAR);
 
@@ -131,6 +133,7 @@ function lineClearTest() {
 
         // then
         assert(equals(result, m2), 'Not a correct triple line clear');
+        assert(result.s === 3 * SCORE_UNIT, 'Should be 3 * SCORE_UNIT');
 
     }, LINE_CLEAR);
 
