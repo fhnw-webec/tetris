@@ -11,19 +11,19 @@ const COLORS = Object.freeze({
     7: 'red',       // Z
 });
 
-const createElement = name => document.createElement(name);
+const _createElement = name => document.createElement(name);
 
 const createUI = () => {
     const root = document.getElementById('app');
-    root.appendChild(createElement('header'));
-    const section = createElement('section');
-    section.appendChild(createGrid(createElement('article'))(ROWS)(COLS)(''));
-    section.appendChild(createGrid(createElement('aside'))(4)(6)('p-'));
+    root.appendChild(_createElement('header'));
+    const section = _createElement('section');
+    section.appendChild(_createGrid(_createElement('article'))(ROWS)(COLS)(''));
+    section.appendChild(_createGrid(_createElement('aside'))(4)(6)('p-'));
     root.appendChild(section);
     return root;
 }
 
-const createGrid = node => rows => cols => prefix => {
+const _createGrid = node => rows => cols => prefix => {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             let cell = document.createElement("div");
@@ -36,15 +36,22 @@ const createGrid = node => rows => cols => prefix => {
 
 const _color = symbol => COLORS[symbol] ?? 'lightgrey';
 
-const _draw = x => y => color => prefix => {
+const _updateGrid = x => y => color => prefix => {
     const c = color !== 'empty' ? color : 'inherit';
     document.getElementById(`${prefix}x${x}y${y}`).style.backgroundColor = c;
 }
 
+const _updateScore = model => {
+    const header = document.querySelector('body > main > header');
+    header.textContent = `Score: ${model.s}`;
+    return model;
+}
+
 const render = (model, prefix = '') => {
+    _updateScore(model);
     for (let y = 0; y < model.m.length; y++) {
         for (let x = 0; x < model.m[y].length; x++) {
-            _draw(x)(y)(_color(model.m[y][x]))(prefix);
+            _updateGrid(x)(y)(_color(model.m[y][x]))(prefix);
         }
     }
 }

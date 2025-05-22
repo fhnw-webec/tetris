@@ -1,4 +1,7 @@
 body {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    color: yellow;
     margin-top: 50px;
     background-color: black;
     display: flex;
@@ -14,7 +17,6 @@ header {
     margin: 0.5vw;
     height: auto;
     padding: 1vw;
-    background-color: yellow;
 }
 
 section {
