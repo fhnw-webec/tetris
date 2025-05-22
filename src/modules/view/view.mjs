@@ -11,28 +11,27 @@ const COLORS = Object.freeze({
     7: 'red',       // Z
 });
 
-const createSection = () => document.createElement("section");
+const createElement = name => document.createElement(name);
 
-const createGrid = root => rows => cols => prefix => {
-    const section = createSection();
+const createUI = () => {
+    const root = document.getElementById('app');
+    root.appendChild(createElement('header'));
+    const section = createElement('section');
+    section.appendChild(createGrid(createElement('article'))(ROWS)(COLS)(''));
+    section.appendChild(createGrid(createElement('aside'))(4)(6)('p-'));
     root.appendChild(section);
+    return root;
+}
+
+const createGrid = node => rows => cols => prefix => {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             let cell = document.createElement("div");
             cell.setAttribute('id', `${prefix}x${col}y${row}`);
-            section.appendChild(cell);
+            node.appendChild(cell);
         }
     }
-}
-
-const createPreview = root => {
-    createGrid(root)(4)(6)('p-');
-}
-
-const createUI = () => {
-    const root = document.getElementById('app');
-    createGrid(root)(ROWS)(COLS)('');
-    createPreview(root);
+    return node;
 }
 
 const _color = symbol => COLORS[symbol] ?? 'lightgrey';

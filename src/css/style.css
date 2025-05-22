@@ -1,40 +1,57 @@
 body {
     margin-top: 50px;
     background-color: black;
+    display: flex;
+    justify-content: center;
 }
 
 main {
+    max-width: 500px;
+    width: 100%;
+}
+
+header {
+    margin: 0.5vw;
+    height: auto;
+    padding: 1vw;
+    background-color: yellow;
+}
+
+section {
     display: flex;
-    gap: 50px;
-    justify-content: center;
     align-items: flex-start;
 }
 
-main > section {
+article,
+aside {
+    margin: 0.5vw;
+    flex: 5;
     display: grid;
-    width: 280px;
+    border: 1px solid rgba(150, 150, 150, 0.);
+
     grid-template-columns: repeat(10, 1fr);
-    border: 1px solid black;
-    background-color: black;
+    grid-template-rows: repeat(23, 1fr);
 }
 
-main > section:nth-of-type(2) {
-    width: 1px;
+aside {
+    flex: 3;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
-main > section:nth-of-type(1) > div {
+article > div,
+aside > div {
+    width: 100%;
+    aspect-ratio: 1 / 1;
     border: 0.5px solid darkgray;
-    padding: 14px;
 }
 
-main > section:nth-of-type(2) > div {
-    border: 0.5px solid black;
-    padding: 14px;
+aside > div {
+    border: none;
 }
 
-section:nth-child(1) [id$="y0"],
-section:nth-child(1) [id$="y1"],
-section:nth-child(1) [id$="y2"] {
+article [id$="y0"],
+article [id$="y1"],
+article [id$="y2"] {
     display: none;
 }
